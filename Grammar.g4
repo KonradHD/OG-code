@@ -98,5 +98,5 @@ ELSEIF_KEYWORD : 'elseif';
 RETURN_KEYWORD : 'return';
 BREAK_KEYWORD : 'break';
 START_KEYWORD : 'start';
-FUCNTIONS_KEYWORDS : ['forward', 'move'];
+FUNCTIONS_KEYWORDS : ['forward', 'move', 'turn', 'penUp', 'penDown', 'setSpeed'];
 IDENTIFIER : '[A-Za-z_][A-Za-z_0-9]*';
