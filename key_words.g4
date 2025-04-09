@@ -1,0 +1,48 @@
+// Arithmetic operators 
+
+ASSIGNMENT_OPERATOR : '=';
+PLUS_OPERATOR : '+';
+MINUS_OPERATOR : '-';
+MULTIPLY_OPERATOR : '*';
+DIVIDE_OPERATOR : '/';
+MODULO_OPERATOR : '%';
+INCREMENT_OPERATOR : '++';
+DECREMENT_OPERATOR : '--';
+EQUAL_OPERATOR : '==';
+UNEQUAL_OPERATOR : '!=';
+LESSER_OPERATOR : '<';
+GREATER_OPERATOR : '>';
+LESSER_OR_EQUAL_OPERATOR : '<=';
+GREATER_OR_EQUAL_OPERATOR : '>=';
+
+// Logic operators
+
+AND_KEYWORD : 'and';
+OR_KEYWORD : 'or';
+
+
+BOOLEAN_TRUE : 'True';
+BOOLEAN_FALSE : 'False';
+COMMA_SEPARATOR : ',';
+COMMENT_LINE : '//';
+COMMENT_BLOCK : '/* .* */'
+LEFT_BRACKET : '[';
+RIGHT_BRACKET : ']';
+LEFT_PARENTHESIS : '(';
+RIGHT_PARENTHESIS : ')';
+LEFT_BRACE : '{';
+RIGHT_BRACE : '}';
+
+// Keywords 
+
+FUNCTION_KEYWORD : 'function';
+LET_KEYWORD : 'let';
+REPEAT_KEYWORD : 'repeat';
+WHILE_KEYWORD : 'while';
+IF_KEYWORD : 'if';
+ELSE_KEYWORD : 'else';
+ELSEIF_KEYWORD : 'elseif';
+RETURN_KEYWORD : 'return';
+BREAK_KEYWORD : 'break';
+FUCNTIONS_KEYWORDS : ['forward', 'start', 'move'];
+
