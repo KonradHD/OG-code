@@ -1,6 +1,6 @@
 //Grammar 
 
-program := funcDefinition+
+program := funcDefinition
 
 
 funcDefinition := FUNCTION_KEYWORD START_KEYWORD LEFT_PARENTHESIS parametersDefinition? RIGHT_PARENTHESIS LEFT_BRACE body returnStatement? LEFT_PARENTHESIS |
