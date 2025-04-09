@@ -1,0 +1,31 @@
+function start() {
+    // Inicjalizacja pozycji i parametrów
+    let bok = 40
+    let ile = 4
+    let pisakAktywny = True
+    let krok = 0
+
+    setSpeed(1000)
+    penDown()
+    
+    repeat ile {
+        forward(pisak=pisakAktywny, bok)
+        turn(90)
+    }
+
+    penUp()
+
+    if (bok > 30) {
+        move(pisak=False, 10)
+    } else {
+        move(pisak=False, 5)
+    }
+
+    while (krok < 3) {
+        forward(pisak=True, 20)
+        turn(120)
+        krok++
+    }
+
+    return 0
+}
