@@ -59,4 +59,5 @@ Planowane użycie generatorów parserów dla Pythona, np.:
 
 ##  Gramatyka języka (BNF)
 
+[Gramatyka OG-code](Grammar.g4)
 
