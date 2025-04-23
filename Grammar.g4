@@ -51,7 +51,6 @@ parameters := assignment+
       
 
 // Arithmetic operators 
-
 ASSIGNMENT_OPERATOR : '=';
 PLUS_OPERATOR : '+';
 MINUS_OPERATOR : '-';
@@ -68,17 +67,22 @@ LESSER_OR_EQUAL_OPERATOR : '<=';
 GREATER_OR_EQUAL_OPERATOR : '>=';
 
 // Logic operators
-
 AND_KEYWORD : 'and';
 OR_KEYWORD : 'or';
 
-
+// Logic constants
 BOOLEAN_TRUE : 'True';
 BOOLEAN_FALSE : 'False';
+
+// Separators
 COMMA_SEPARATOR : ',';
+
+// Comments
 COMMENT_LINE : '//';
 COMMENT_START_BLOCK : '/*;
 COMMENT_END_BLOCK : '*/';
+
+// Brackets
 LEFT_BRACKET : '[';
 RIGHT_BRACKET : ']';
 LEFT_PARENTHESIS : '(';
@@ -87,7 +91,6 @@ LEFT_BRACE : '{';
 RIGHT_BRACE : '}';
 
 // Keywords 
-
 FUNCTION_KEYWORD : 'function';
 LET_KEYWORD : 'let';
 REPEAT_KEYWORD : 'repeat';
@@ -98,5 +101,12 @@ ELSEIF_KEYWORD : 'elseif';
 RETURN_KEYWORD : 'return';
 BREAK_KEYWORD : 'break';
 START_KEYWORD : 'start';
-FUNCTIONS_KEYWORDS : ['forward', 'move', 'turn', 'penUp', 'penDown', 'setSpeed'];
+FUNCTIONS_KEYWORDS : ['forward', 'move', 'turn', 'penUp', 'penDown', 'setSpeed', 'setTemp', 'circle', 'wait', 'cleanNozzle', ];
 IDENTIFIER : '[A-Za-z_][A-Za-z_0-9]*';
+
+forward(30) - do przodu 30 mm - G0, G1
+move(x=30, y=43. z=45), przesuń się do xyz - G0, G1
+turn() - skręca w prawo o x stopni - 
+circle(R=30, X=0, Y=0) - rysuje okrąg o promieniu R i środku w X, Y - G3, G4
+wait(300) - G4 
+cleanNozzle() - usuwanie pozostałości atramentu z dyszy - G12
