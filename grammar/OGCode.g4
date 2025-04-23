@@ -8,15 +8,15 @@ funcDefinition : FUNCTION_KEYWORD START_KEYWORD LEFT_PARENTHESIS parametersDefin
 
 parametersDefinition : LET_KEYWORD IDENTIFIER (COMMA_SEPARATOR LET_KEYWORD IDENTIFIER)*;
 
-returnStatement : RETURN_KEYWORD expression;
+returnStatement : RETURN_KEYWORD expressionStatement;
 
 body : (loopStatement |
-        commandBlock | 
-        variableDefinition |
-        expression | 
+        commandBlock SEMICOLON_SEPARATOR | 
+        variableDefinition SEMICOLON_SEPARATOR |
+        expressionStatement | 
         ifStatement | 
-        assignment | 
-        incrementDecrementStatement | 
+        assignmentStatement | 
+        incrementDecrementStatement SEMICOLON_SEPARATOR | 
         commentStatement)*;
 
 incrementDecrementStatement : IDENTIFIER (INCREMENT_OPERATOR | DECREMENT_OPERATOR);
@@ -32,7 +32,11 @@ number : NUMBER;
 
 variableDefinition : LET_KEYWORD IDENTIFIER (ASSIGNMENT_OPERATOR (expression | BOOLEAN_TRUE | BOOLEAN_FALSE))?;
 
+assignmentStatement : assignment SEMICOLON_SEPARATOR;
+
 assignment : (IDENTIFIER ASSIGNMENT_OPERATOR)? (expression | BOOLEAN_TRUE | BOOLEAN_FALSE);
+
+expressionStatement : expression SEMICOLON_SEPARATOR;
 
 expression : expression (PLUS_OPERATOR | MINUS_OPERATOR | MULTIPLY_OPERATOR | DIVIDE_OPERATOR | MODULO_OPERATOR) expression | 
               LEFT_PARENTHESIS expression RIGHT_PARENTHESIS | 
@@ -74,6 +78,7 @@ BOOLEAN_FALSE : 'False';
 
 // Separators
 COMMA_SEPARATOR : ',';
+SEMICOLON_SEPARATOR : ';';
 
 // Comments
 LINE_COMMENT : '//' ~[\r\n]* -> skip;
