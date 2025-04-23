@@ -1,0 +1,56 @@
+/*function start() {
+    // Inicjalizacja pozycji i parametrów
+    let bok = 40
+    let ile = 4
+    let krok = 0
+
+    setSpeed(1000)
+    penDown()
+
+    repeat ile {
+        forward(bok)
+        turn(90)
+    }
+
+    penUp()
+
+    if (bok > 30) {
+        move(10)
+    } else {
+        move(5)
+    }
+
+    while (krok < 3) {
+        forward(20)
+        turn(120)
+        krok++
+    }
+}
+*/
+
+function start() {
+  let size = 100
+  penDown()
+
+  // pionowa kreska litery L
+  let x
+  repeat 2 {
+    x = size / 2
+    forward(x = size / 2)
+    turn(180)
+  }
+
+  // przesunięcie i pozioma kreska litery L
+  penUp()
+  forward(size / 2)
+  turn(-90)
+  penDown()
+  forward(size)
+
+  // warunek testowy (przykładowy if)
+  if (size > 50) {
+    move(1)
+  } else {
+    move(0)
+  }
+}
