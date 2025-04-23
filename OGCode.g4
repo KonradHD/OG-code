@@ -1,12 +1,12 @@
-grammar OGCode
+grammar OGCode;
+
 
 program : funcDefinition;
-
 
 funcDefinition : FUNCTION_KEYWORD START_KEYWORD LEFT_PARENTHESIS parametersDefinition? RIGHT_PARENTHESIS LEFT_BRACE body returnStatement? LEFT_PARENTHESIS |
                   FUNCTION_KEYWORD IDENTIFIER LEFT_PARENTHESIS parametersDefinition? RIGHT_PARENTHESIS LEFT_BRACE body returnStatement? LEFT_PARENTHESIS funcDefinition;
 
-parametersDefinition : LET_KEYWORD IDENTIFIER (COMMA_SEPARATOR LET_KEYWORDS IDENTIFIER)*;
+parametersDefinition : LET_KEYWORD IDENTIFIER (COMMA_SEPARATOR LET_KEYWORD IDENTIFIER)*;
 
 returnStatement : RETURN_KEYWORD expression;
 
@@ -23,7 +23,7 @@ incrementDecrementStatement : IDENTIFIER (INCREMENT_OPERATOR | DECREMENT_OPERATO
 
 ifStatement : IF_KEYWORD statement (ELSEIF_KEYWORD statement)* (ELSE_KEYWORD statement)?;
 
-statement : LEFT_PARENTHESIS condition RIGHT_PARENTHESIS LEFT_BRACES body RIGHT_BRACES;
+statement : LEFT_PARENTHESIS condition RIGHT_PARENTHESIS LEFT_BRACE body RIGHT_BRACE;
 
 loopStatement : REPEAT_KEYWORD number LEFT_BRACE body RIGHT_BRACE | 
                   WHILE_KEYWORD statement;
@@ -43,7 +43,7 @@ condition : expression (EQUAL_OPERATOR | UNEQUAL_OPERATOR | LESSER_OPERATOR | GR
 
 commentStatement : LINE_COMMENT | BLOCK_COMMENT;
 
-commandBlock : FUCNTIONS_KEYWORDS LEFT_PARENTHESIS parameters? RIGHT_PARENTHESIS;
+commandBlock : FUNCTIONS_KEYWORDS LEFT_PARENTHESIS parameters? RIGHT_PARENTHESIS;
 
 parameters : assignment (COMMA_SEPARATOR assignment)*;
       
