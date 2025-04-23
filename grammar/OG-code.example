@@ -1,5 +1,7 @@
 function start() {
     // Inicjalizacja pozycji i parametrów
+    ground('XY');
+    autoLevel(save=True);
     let bok = 40;
     let ile = 4;
     let krok = 0;
@@ -25,6 +27,8 @@ function start() {
         turn(120);
         krok++;
     }
+    filledCircle(R=30, X=0, Y=0);
+    penDown();
 }
 
 
@@ -46,6 +50,8 @@ function getSize() {
   turn(-90);
   penDown();
   forward(size);
+
+  cleanNozzle();
 
   // warunek testowy (przykładowy if)
   if (size > 50) {

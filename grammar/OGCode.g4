@@ -34,7 +34,7 @@ variableDefinition : LET_KEYWORD IDENTIFIER (ASSIGNMENT_OPERATOR (expression | B
 
 assignmentStatement : assignment SEMICOLON_SEPARATOR;
 
-assignment : (IDENTIFIER ASSIGNMENT_OPERATOR)? (expression | BOOLEAN_TRUE | BOOLEAN_FALSE);
+assignment : (IDENTIFIER ASSIGNMENT_OPERATOR)? (expression | BOOLEAN_TRUE | BOOLEAN_FALSE | STRING);
 
 expressionStatement : expression SEMICOLON_SEPARATOR;
 
@@ -106,6 +106,9 @@ START_KEYWORD : 'start';
 FUNCTIONS_KEYWORDS : 'forward' | 'move' | 'turn' | 'penUp' | 'penDown' | 'setSpeed' | 'setPenTemp'
     | 'circle' | 'wait' | 'cleanNozzle' | 'ground' | 'unit' | 'autoLevel'
     | 'setTableTemp' | 'cooler' | 'absolutePositioning' | 'filledCircle' | 'drawLetter';
+
+// Helpers
 IDENTIFIER : [A-Za-z_][A-Za-z_0-9]*;
 NUMBER : '-'?[0-9]+ ('.' [0-9]+)?;
 WS : [ \t\r\n]+ -> skip ; // Ignoruj białe znaki
+STRING : '\'' (~[\n'\r])* '\'';
