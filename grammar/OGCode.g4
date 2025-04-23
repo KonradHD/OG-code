@@ -111,4 +111,4 @@ FUNCTIONS_KEYWORDS : 'forward' | 'move' | 'turn' | 'penUp' | 'penDown' | 'setSpe
 IDENTIFIER : [A-Za-z_][A-Za-z_0-9]*;
 NUMBER : '-'?[0-9]+ ('.' [0-9]+)?;
 WS : [ \t\r\n]+ -> skip ; // Ignoruj białe znaki
-STRING : '\'' (~[\n\'\r])* '\'';
+STRING : '\'' (~[\n'\r])* '\'';
