@@ -107,12 +107,30 @@ class OGCodeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by OGCodeParser#assignmentStatement.
+    def enterAssignmentStatement(self, ctx:OGCodeParser.AssignmentStatementContext):
+        pass
+
+    # Exit a parse tree produced by OGCodeParser#assignmentStatement.
+    def exitAssignmentStatement(self, ctx:OGCodeParser.AssignmentStatementContext):
+        pass
+
+
     # Enter a parse tree produced by OGCodeParser#assignment.
     def enterAssignment(self, ctx:OGCodeParser.AssignmentContext):
         pass
 
     # Exit a parse tree produced by OGCodeParser#assignment.
     def exitAssignment(self, ctx:OGCodeParser.AssignmentContext):
+        pass
+
+
+    # Enter a parse tree produced by OGCodeParser#expressionStatement.
+    def enterExpressionStatement(self, ctx:OGCodeParser.ExpressionStatementContext):
+        pass
+
+    # Exit a parse tree produced by OGCodeParser#expressionStatement.
+    def exitExpressionStatement(self, ctx:OGCodeParser.ExpressionStatementContext):
         pass
 
 
