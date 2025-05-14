@@ -1,6 +1,8 @@
 from antlr4 import *
 from OGCodeLexer import OGCodeLexer
 from OGCodeParser import OGCodeParser
+from OGCompiler import OGCompiler
+
 
 
 def print_tree(node, indent=0):
@@ -8,6 +10,21 @@ def print_tree(node, indent=0):
     print("  " * indent + f"{type(node).__name__}: {node_text}")
     for i in range(node.getChildCount()):
         print_tree(node.getChild(i), indent + 1)
+
+
+def compile_to_GCode(input_path, output_path):
+    OG_content = FileStream(input_path, encoding="utf-8")
+    lexer = OGCodeLexer(OG_content)
+    token_stream = CommonTokenStream(lexer)
+    parser = OGCodeParser(token_stream)
+    tree = parser.program()
+
+    compiler = OGCompiler()
+    g_code = compiler.compile(tree)
+
+    with open(output_path, "w", encoding="utf-8") as file:
+        file.write(g_code)
+
 
 
 def main():
@@ -22,6 +39,7 @@ def main():
     tree = parser.program()
     print_tree(tree)
 
+    compile_to_GCode("OG-code.example", "G-code.txt")
 
 if __name__ == '__main__':
     main()

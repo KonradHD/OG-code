@@ -26,6 +26,24 @@ class OGCodeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by OGCodeParser#startFunction.
+    def enterStartFunction(self, ctx:OGCodeParser.StartFunctionContext):
+        pass
+
+    # Exit a parse tree produced by OGCodeParser#startFunction.
+    def exitStartFunction(self, ctx:OGCodeParser.StartFunctionContext):
+        pass
+
+
+    # Enter a parse tree produced by OGCodeParser#otherFunction.
+    def enterOtherFunction(self, ctx:OGCodeParser.OtherFunctionContext):
+        pass
+
+    # Exit a parse tree produced by OGCodeParser#otherFunction.
+    def exitOtherFunction(self, ctx:OGCodeParser.OtherFunctionContext):
+        pass
+
+
     # Enter a parse tree produced by OGCodeParser#parametersDefinition.
     def enterParametersDefinition(self, ctx:OGCodeParser.ParametersDefinitionContext):
         pass
@@ -71,12 +89,21 @@ class OGCodeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by OGCodeParser#statement.
-    def enterStatement(self, ctx:OGCodeParser.StatementContext):
+    # Enter a parse tree produced by OGCodeParser#elseIfStatement.
+    def enterElseIfStatement(self, ctx:OGCodeParser.ElseIfStatementContext):
         pass
 
-    # Exit a parse tree produced by OGCodeParser#statement.
-    def exitStatement(self, ctx:OGCodeParser.StatementContext):
+    # Exit a parse tree produced by OGCodeParser#elseIfStatement.
+    def exitElseIfStatement(self, ctx:OGCodeParser.ElseIfStatementContext):
+        pass
+
+
+    # Enter a parse tree produced by OGCodeParser#elseStatement.
+    def enterElseStatement(self, ctx:OGCodeParser.ElseStatementContext):
+        pass
+
+    # Exit a parse tree produced by OGCodeParser#elseStatement.
+    def exitElseStatement(self, ctx:OGCodeParser.ElseStatementContext):
         pass
 
 
@@ -86,15 +113,6 @@ class OGCodeListener(ParseTreeListener):
 
     # Exit a parse tree produced by OGCodeParser#loopStatement.
     def exitLoopStatement(self, ctx:OGCodeParser.LoopStatementContext):
-        pass
-
-
-    # Enter a parse tree produced by OGCodeParser#number.
-    def enterNumber(self, ctx:OGCodeParser.NumberContext):
-        pass
-
-    # Exit a parse tree produced by OGCodeParser#number.
-    def exitNumber(self, ctx:OGCodeParser.NumberContext):
         pass
 
 

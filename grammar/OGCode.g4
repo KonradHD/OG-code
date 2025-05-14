@@ -3,44 +3,47 @@ grammar OGCode;
 
 program : funcDefinition;
 
-funcDefinition : FUNCTION_KEYWORD START_KEYWORD LEFT_PARENTHESIS parametersDefinition? RIGHT_PARENTHESIS LEFT_BRACE body returnStatement? RIGHT_BRACE |
-                  FUNCTION_KEYWORD IDENTIFIER LEFT_PARENTHESIS parametersDefinition? RIGHT_PARENTHESIS LEFT_BRACE body returnStatement? RIGHT_BRACE funcDefinition;
+funcDefinition : startFunction otherFunction*;
+
+startFunction : FUNCTION_KEYWORD START_KEYWORD LEFT_PARENTHESIS RIGHT_PARENTHESIS LEFT_BRACE body* RIGHT_BRACE;
+
+otherFunction : FUNCTION_KEYWORD IDENTIFIER LEFT_PARENTHESIS parametersDefinition? RIGHT_PARENTHESIS LEFT_BRACE body* returnStatement? RIGHT_BRACE;
 
 parametersDefinition : LET_KEYWORD IDENTIFIER (COMMA_SEPARATOR LET_KEYWORD IDENTIFIER)*;
 
 returnStatement : RETURN_KEYWORD expressionStatement;
 
-body : (loopStatement |
+body : loopStatement |
         commandBlock SEMICOLON_SEPARATOR | 
         variableDefinition SEMICOLON_SEPARATOR |
         expressionStatement | 
         ifStatement | 
         assignmentStatement | 
         incrementDecrementStatement SEMICOLON_SEPARATOR | 
-        commentStatement)*;
+        commentStatement;
 
 incrementDecrementStatement : IDENTIFIER (INCREMENT_OPERATOR | DECREMENT_OPERATOR);
 
-ifStatement : IF_KEYWORD statement (ELSEIF_KEYWORD statement)* (ELSE_KEYWORD LEFT_BRACE body RIGHT_BRACE)?;
+ifStatement : IF_KEYWORD LEFT_PARENTHESIS condition RIGHT_PARENTHESIS LEFT_BRACE body* RIGHT_BRACE (elseIfStatement)* (elseStatement)?;
 
-statement : LEFT_PARENTHESIS condition RIGHT_PARENTHESIS LEFT_BRACE body RIGHT_BRACE;
+elseIfStatement : ELSEIF_KEYWORD LEFT_PARENTHESIS condition RIGHT_PARENTHESIS LEFT_BRACE body* RIGHT_BRACE;
 
-loopStatement : REPEAT_KEYWORD (number | IDENTIFIER) LEFT_BRACE body RIGHT_BRACE | 
-                  WHILE_KEYWORD statement;
+elseStatement : ELSE_KEYWORD LEFT_BRACE body* RIGHT_BRACE;
 
-number : NUMBER;
+loopStatement : REPEAT_KEYWORD (NUMBER | IDENTIFIER) LEFT_BRACE body* RIGHT_BRACE | 
+                  WHILE_KEYWORD LEFT_PARENTHESIS condition RIGHT_PARENTHESIS LEFT_BRACE body* RIGHT_BRACE;
 
 variableDefinition : LET_KEYWORD IDENTIFIER (ASSIGNMENT_OPERATOR (expression | BOOLEAN_TRUE | BOOLEAN_FALSE))?;
 
 assignmentStatement : assignment SEMICOLON_SEPARATOR;
 
-assignment : (IDENTIFIER ASSIGNMENT_OPERATOR)? (expression | BOOLEAN_TRUE | BOOLEAN_FALSE | STRING);
+assignment : IDENTIFIER ASSIGNMENT_OPERATOR (expression | BOOLEAN_TRUE | BOOLEAN_FALSE | STRING | IDENTIFIER);
 
 expressionStatement : expression SEMICOLON_SEPARATOR;
 
 expression : expression (PLUS_OPERATOR | MINUS_OPERATOR | MULTIPLY_OPERATOR | DIVIDE_OPERATOR | MODULO_OPERATOR) expression | 
               LEFT_PARENTHESIS expression RIGHT_PARENTHESIS | 
-              number |
+              NUMBER |
               IDENTIFIER;
 
 condition : expression (EQUAL_OPERATOR | UNEQUAL_OPERATOR | LESSER_OPERATOR | GREATER_OPERATOR | LESSER_OR_EQUAL_OPERATOR | GREATER_OR_EQUAL_OPERATOR) expression ((AND_KEYWORD | OR_KEYWORD) condition)*;
@@ -73,16 +76,16 @@ AND_KEYWORD : 'and';
 OR_KEYWORD : 'or';
 
 // Logic constants
-BOOLEAN_TRUE : 'True';
-BOOLEAN_FALSE : 'False';
+BOOLEAN_TRUE : 'true';
+BOOLEAN_FALSE : 'false';
 
 // Separators
 COMMA_SEPARATOR : ',';
 SEMICOLON_SEPARATOR : ';';
 
 // Comments
-LINE_COMMENT : '//' ~[\r\n]* -> skip;
-BLOCK_COMMENT : '/*' .*? '*/' -> skip;
+LINE_COMMENT : '//' ~[\r\n]*;
+BLOCK_COMMENT : '/*' .*? '*/';
 
 // Brackets
 LEFT_BRACKET : '[';
@@ -103,8 +106,8 @@ ELSEIF_KEYWORD : 'elseif';
 RETURN_KEYWORD : 'return';
 BREAK_KEYWORD : 'break';
 START_KEYWORD : 'start';
-FUNCTIONS_KEYWORDS : 'forward' | 'move' | 'turn' | 'penUp' | 'penDown' | 'setSpeed' | 'setPenTemp'
-    | 'circle' | 'wait' | 'cleanNozzle' | 'ground' | 'unit' | 'autoLevel'
+FUNCTIONS_KEYWORDS : 'forward' | 'move' | 'turn' | 'penUp' | 'penDown' | 'setPenTemp'
+    | 'circle' | 'wait' | 'cleanNozzle' | 'ground' | 'unit' | 'autoLevel' | 'setAngle'
     | 'setTableTemp' | 'cooler' | 'absolutePositioning' | 'filledCircle' | 'drawLetter';
 
 // Helpers

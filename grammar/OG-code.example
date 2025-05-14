@@ -1,37 +1,39 @@
 function start() {
     // Inicjalizacja pozycji i parametrów
-    ground('XY');
-    autoLevel(save=True);
+    ground(surface='XY');
+    autoLevel(save=true);
+    setAngle(angle=0);
     let bok = 40;
     let ile = 4;
     let krok = 0;
-
-    setSpeed(1000);
+/* fdspfsf 
+fds,fksd, false
+*/
     penDown();
 
-    repeat ile {
-        forward(bok);
-        turn(90);
+    repeat 4 {
+        forward(L=bok);
+        turn(angle=90);
     }
 
     penUp();
 
     if (bok > 30) {
-        move(10);
+        move(X=10, Y=20);
     } else {
-        move(5);
+        move(X=5, Y=-40);
     }
 
     while (krok < 3) {
-        forward(20);
-        turn(120);
+        forward(L=20);
+        turn(angle=120);
         krok++;
     }
-    filledCircle(R=30, X=0, Y=0);
+    //filledCircle(R=30, X=0, Y=0);
     penDown();
 }
 
-
+/*
 function getSize() {
   let size = 100;
   penDown();
@@ -60,4 +62,4 @@ function getSize() {
     move(0);
   }
   return size;
-}
+}*/
