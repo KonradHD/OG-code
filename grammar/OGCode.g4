@@ -3,15 +3,13 @@ grammar OGCode;
 
 program : funcDefinition;
 
-funcDefinition : startFunction otherFunction*;
+funcDefinition : otherFunction* startFunction;
 
 startFunction : FUNCTION_KEYWORD START_KEYWORD LEFT_PARENTHESIS RIGHT_PARENTHESIS LEFT_BRACE body* RIGHT_BRACE;
 
-otherFunction : FUNCTION_KEYWORD IDENTIFIER LEFT_PARENTHESIS parametersDefinition? RIGHT_PARENTHESIS LEFT_BRACE body* returnStatement? RIGHT_BRACE;
+otherFunction : FUNCTION_KEYWORD IDENTIFIER LEFT_PARENTHESIS parametersDefinition? RIGHT_PARENTHESIS LEFT_BRACE body* RIGHT_BRACE;
 
 parametersDefinition : LET_KEYWORD IDENTIFIER (COMMA_SEPARATOR LET_KEYWORD IDENTIFIER)*;
-
-returnStatement : RETURN_KEYWORD expressionStatement;
 
 body : loopStatement |
         commandBlock SEMICOLON_SEPARATOR | 
@@ -42,15 +40,17 @@ assignment : IDENTIFIER ASSIGNMENT_OPERATOR (expression | BOOLEAN_TRUE | BOOLEAN
 expressionStatement : expression SEMICOLON_SEPARATOR;
 
 expression : expression (PLUS_OPERATOR | MINUS_OPERATOR | MULTIPLY_OPERATOR | DIVIDE_OPERATOR | MODULO_OPERATOR) expression | 
-              LEFT_PARENTHESIS expression RIGHT_PARENTHESIS | 
-              NUMBER |
-              IDENTIFIER;
+            LEFT_PARENTHESIS expression RIGHT_PARENTHESIS ((PLUS_OPERATOR | MINUS_OPERATOR | MULTIPLY_OPERATOR | DIVIDE_OPERATOR | MODULO_OPERATOR)) expression | 
+            NUMBER |
+            IDENTIFIER;
+
+
 
 condition : expression (EQUAL_OPERATOR | UNEQUAL_OPERATOR | LESSER_OPERATOR | GREATER_OPERATOR | LESSER_OR_EQUAL_OPERATOR | GREATER_OR_EQUAL_OPERATOR) expression ((AND_KEYWORD | OR_KEYWORD) condition)*;
 
 commentStatement : LINE_COMMENT | BLOCK_COMMENT;
 
-commandBlock : FUNCTIONS_KEYWORDS LEFT_PARENTHESIS parameters? RIGHT_PARENTHESIS;
+commandBlock : (FUNCTIONS_KEYWORDS | IDENTIFIER) LEFT_PARENTHESIS parameters? RIGHT_PARENTHESIS;
 
 parameters : assignment (COMMA_SEPARATOR assignment)*;
       
@@ -103,7 +103,6 @@ WHILE_KEYWORD : 'while';
 IF_KEYWORD : 'if';
 ELSE_KEYWORD : 'else';
 ELSEIF_KEYWORD : 'elseif';
-RETURN_KEYWORD : 'return';
 BREAK_KEYWORD : 'break';
 START_KEYWORD : 'start';
 FUNCTIONS_KEYWORDS : 'forward' | 'move' | 'turn' | 'penUp' | 'penDown' | 'setPenTemp'

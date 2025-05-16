@@ -53,15 +53,6 @@ class OGCodeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by OGCodeParser#returnStatement.
-    def enterReturnStatement(self, ctx:OGCodeParser.ReturnStatementContext):
-        pass
-
-    # Exit a parse tree produced by OGCodeParser#returnStatement.
-    def exitReturnStatement(self, ctx:OGCodeParser.ReturnStatementContext):
-        pass
-
-
     # Enter a parse tree produced by OGCodeParser#body.
     def enterBody(self, ctx:OGCodeParser.BodyContext):
         pass

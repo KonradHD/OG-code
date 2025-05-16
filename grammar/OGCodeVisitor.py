@@ -34,11 +34,6 @@ class OGCodeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by OGCodeParser#returnStatement.
-    def visitReturnStatement(self, ctx:OGCodeParser.ReturnStatementContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by OGCodeParser#body.
     def visitBody(self, ctx:OGCodeParser.BodyContext):
         return self.visitChildren(ctx)

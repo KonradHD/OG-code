@@ -1,3 +1,34 @@
+
+function getSize() {
+  let size = 100;
+  penDown();
+
+  // pionowa kreska litery L
+  let x;
+  repeat 2 {
+    x = size / 2;
+    forward(L=x);
+    turn(angle=180);
+  }
+
+  // przesunięcie i pozioma kreska litery L
+  penUp();
+  forward(L=x);
+  turn(angle=-90);
+  penDown();
+  forward(L=size);
+
+  cleanNozzle();
+
+  // warunek testowy (przykładowy if)
+  if (size > 50) {
+    move(X=1, Y=30);
+  } else {
+    move(X=0, Y=30);
+  }
+}
+
+
 function start() {
     // Inicjalizacja pozycji i parametrów
     ground(surface='XY');
@@ -9,8 +40,9 @@ function start() {
 /* fdspfsf 
 fds,fksd, false
 */
+    let x = (ile+12*(35-10))*2;
     penDown();
-
+    let y = ile / 3;
     repeat 4 {
         forward(L=bok);
         turn(angle=90);
@@ -29,37 +61,7 @@ fds,fksd, false
         turn(angle=120);
         krok++;
     }
-    //filledCircle(R=30, X=0, Y=0);
+    filledCircle(R=30, X=0, Y=0);
     penDown();
+    getSize();
 }
-
-/*
-function getSize() {
-  let size = 100;
-  penDown();
-
-  // pionowa kreska litery L
-  let x;
-  repeat 2 {
-    x = size / 2;
-    forward(x = size / 2);
-    turn(180);
-  }
-
-  // przesunięcie i pozioma kreska litery L
-  penUp();
-  forward(size / 2);
-  turn(-90);
-  penDown();
-  forward(size);
-
-  cleanNozzle();
-
-  // warunek testowy (przykładowy if)
-  if (size > 50) {
-    move(1);
-  } else {
-    move(0);
-  }
-  return size;
-}*/
