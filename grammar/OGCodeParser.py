@@ -1588,7 +1588,6 @@ class OGCodeParser ( Parser ):
                 self.expression(0)
                 self.state = 205
                 self.match(OGCodeParser.RIGHT_PARENTHESIS)
-
                 self.state = 206
                 _la = self._input.LA(1)
                 if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 124) != 0)):

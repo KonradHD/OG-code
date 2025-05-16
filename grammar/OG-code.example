@@ -1,12 +1,13 @@
 
-function getSize() {
+function getSize(let i) {
   let size = 100;
   penDown();
 
   // pionowa kreska litery L
   let x;
+  x = size;
   repeat 2 {
-    x = size / 2;
+    x = x / 2;
     forward(L=x);
     turn(angle=180);
   }
@@ -40,7 +41,7 @@ function start() {
 /* fdspfsf 
 fds,fksd, false
 */
-    let x = (ile+12*(35-10))*2;
+    let x = (ile+(35-10)*12)*2;
     penDown();
     let y = ile / 3;
     repeat 4 {
@@ -63,5 +64,7 @@ fds,fksd, false
     }
     filledCircle(R=30, X=0, Y=0);
     penDown();
-    getSize();
+    // getSize() function:
+    let par = 50;
+    getSize(i=50);
 }
