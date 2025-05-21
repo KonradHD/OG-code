@@ -32,7 +32,7 @@ class Helper:
                 return round(float(value), 3)
             except:
                 pass
-        return 0.0
+        raise Exception(f"Variable {variable} in not numeric.")
     
 
     def getXYZValue(self, variable):
@@ -42,7 +42,7 @@ class Helper:
         if axis.find("'") != -1:
             axis = axis.replace("'", "")
             if axis not in ("X", "Y", "Z", "XY", "YZ", "XZ"):
-                return None
+                raise Exception(f"Variable {variable} is not an axis.")
             return axis
         if self.compiler.variables_values[self.compiler.function_name].get(axis):
             axis = self.compiler.variables_values[self.compiler.function_name].get(axis)
@@ -57,7 +57,7 @@ class Helper:
             new_value = self.compiler.variables_values[self.compiler.function_name].get(value)
             if new_value in ("true", "false"):
                 return new_value == "true"
-        return None
+        raise Exception(f"Variable {variable} is not a boolean value.")
     
 
     def getStringValue(self, variable):
@@ -65,9 +65,12 @@ class Helper:
         if value.find("'") != -1:
             value = value.replace("'", "")
         else:
-            if self.compiler.variables_values[self.compiler.function_name].get(value):
-                value = self.compiler.variables_values[self.compiler.function_name].get(value)
+            #if self.compiler.variables_values[self.compiler.function_name].get(value):
+            value = self.compiler.variables_values[self.compiler.function_name].get(value)
+            if value is None:
+                raise Exception(f"Variable {variable} is not a string.")
         return value
+    
     
     # Metody OGCode
     def forward(self):
@@ -191,3 +194,26 @@ class Helper:
 
     def cleanNozzle(self):
         self.compiler.output.append("G12")
+
+    def moveVertically(self):
+        length = self.getFloatValue("Z")
+        self.compiler.output.append(f"G1 Z{length}" if self.compiler.is_pen_up else f"G0 Z{length} F1000")
+
+
+    def drawSquare(self):
+        L = self.getFloatValue("L")
+        x0 = self.getFloatValue("X")
+        y0 = self.getFloatValue("Y")
+        self.compiler.output.append(f"G1 X{x0 - L/2} Y{y0 - L/2}")
+        self.compiler.output.append(f"M3") # start wrzeciona lub ekstrudera
+        self.compiler.output.append("G91") # tryb przyrostowy (łatwiejsze przemieszczanie)
+        self.compiler.output.append("M83") # ekstruder w trybie przyrostowym (dla druku 3D)
+        
+        self.compiler.output.append(f"G0 X{x0 + L/2} Y{y0 - L/2}")
+        self.compiler.output.append(f"G0 X{x0 + L/2} Y{y0 + L/2}")
+        self.compiler.output.append(f"G0 X{x0 - L/2} Y{y0 + L/2}")
+        self.compiler.output.append(f"G0 X{x0 - L/2} Y{y0 - L/2}")
+            
+        self.compiler.output.append("G90") # tryb absolutny
+        self.compiler.output.append("M5") # stop wrzeciona
+        self.compiler.output.append(f"G0 X{x0} Y{y0}") # kończy na środku kwadratu

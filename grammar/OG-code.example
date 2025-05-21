@@ -1,4 +1,3 @@
-
 function getSize(let i) {
   let size = 100;
   penDown();
@@ -11,6 +10,7 @@ function getSize(let i) {
     forward(L=x);
     turn(angle=180);
   }
+  let key = 4;
 
   // przesunięcie i pozioma kreska litery L
   penUp();
@@ -18,6 +18,7 @@ function getSize(let i) {
   turn(angle=-90);
   penDown();
   forward(L=size);
+  vamos = 4;
 
   cleanNozzle();
 
@@ -41,7 +42,7 @@ function start() {
 /* fdspfsf 
 fds,fksd, false
 */
-    let x = (ile+(35-10)*12)*2;
+    let x = (ile+12)*2;
     penDown();
     let y = ile / 3;
     repeat 4 {
@@ -62,9 +63,12 @@ fds,fksd, false
         turn(angle=120);
         krok++;
     }
+
     filledCircle(R=30, X=0, Y=0);
     penDown();
     // getSize() function:
     let par = 50;
     getSize(i=50);
+    moveVertically(Z=10);
+    drawSquare(X=0, Y=0, L=30);
 }

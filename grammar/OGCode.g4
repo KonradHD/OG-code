@@ -39,11 +39,12 @@ assignment : IDENTIFIER ASSIGNMENT_OPERATOR (expression | BOOLEAN_TRUE | BOOLEAN
 
 expressionStatement : expression SEMICOLON_SEPARATOR;
 
-expression : expression (PLUS_OPERATOR | MINUS_OPERATOR | MULTIPLY_OPERATOR | DIVIDE_OPERATOR | MODULO_OPERATOR) expression | 
-            LEFT_PARENTHESIS expression RIGHT_PARENTHESIS (PLUS_OPERATOR | MINUS_OPERATOR | MULTIPLY_OPERATOR | DIVIDE_OPERATOR | MODULO_OPERATOR) expression | 
+expression : expression (MULTIPLY_OPERATOR | DIVIDE_OPERATOR | MODULO_OPERATOR) expression |
+            expression (PLUS_OPERATOR | MINUS_OPERATOR) expression |
+            LEFT_PARENTHESIS expression RIGHT_PARENTHESIS | 
             NUMBER |
-            IDENTIFIER;
-
+            IDENTIFIER | 
+            MINUS_OPERATOR expression;
 
 
 condition : expression (EQUAL_OPERATOR | UNEQUAL_OPERATOR | LESSER_OPERATOR | GREATER_OPERATOR | LESSER_OR_EQUAL_OPERATOR | GREATER_OR_EQUAL_OPERATOR) expression ((AND_KEYWORD | OR_KEYWORD) condition)*;
@@ -107,7 +108,8 @@ BREAK_KEYWORD : 'break';
 START_KEYWORD : 'start';
 FUNCTIONS_KEYWORDS : 'forward' | 'move' | 'turn' | 'penUp' | 'penDown' | 'setPenTemp'
     | 'circle' | 'wait' | 'cleanNozzle' | 'ground' | 'unit' | 'autoLevel' | 'setAngle'
-    | 'setTableTemp' | 'cooler' | 'absolutePositioning' | 'filledCircle' | 'drawLetter';
+    | 'setTableTemp' | 'cooler' | 'absolutePositioning' | 'filledCircle' | 'drawLetter' 
+    | 'moveVertically' | 'drawSquare';
 
 // Helpers
 IDENTIFIER : [A-Za-z_][A-Za-z_0-9]*;

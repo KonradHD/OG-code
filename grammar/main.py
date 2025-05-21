@@ -2,6 +2,7 @@ from antlr4 import *
 from OGCodeLexer import OGCodeLexer
 from OGCodeParser import OGCodeParser
 from OGCompiler import OGCompiler
+from MyErrorListener import MyErrorListener
 
 
 
@@ -17,9 +18,13 @@ def compile_to_GCode(input_path, output_path):
     lexer = OGCodeLexer(OG_content)
     token_stream = CommonTokenStream(lexer)
     parser = OGCodeParser(token_stream)
+    parser.removeErrorListeners()
+    parser.addErrorListener(MyErrorListener())
     tree = parser.program()
-
-    compiler = OGCompiler()
+    try:
+        compiler = OGCompiler()
+    except Exception as e:
+        print(f"Error: {e}")
     g_code = compiler.compile(tree)
 
     with open(output_path, "w", encoding="utf-8") as file:

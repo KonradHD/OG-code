@@ -3,13 +3,16 @@ from antlr4 import *
 from OGCodeLexer import OGCodeLexer
 from OGCodeParser import OGCodeParser
 from OGCompiler import OGCompiler
-import os
+import MyErrorListener
 
 def compile_code(code):
     input_stream = InputStream(code)
     lexer = OGCodeLexer(input_stream)
     token_stream = CommonTokenStream(lexer)
     parser = OGCodeParser(token_stream)
+
+    parser.removeErrorListeners()
+    parser.addErrorListener(MyErrorListener())
     tree = parser.program()
 
     compiler = OGCompiler()

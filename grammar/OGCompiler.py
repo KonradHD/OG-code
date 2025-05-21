@@ -118,6 +118,8 @@ class OGCompiler(OGCodeVisitor):
             else:
                 var = ctx.IDENTIFIER().getText()
                 value = self.variables_values[self.function_name].get(var)
+                if value is None:
+                    raise Exception(f"Variable {var} does not exist.")
             for _ in range(0, int(value)):
                 for body in ctx.body():
                     self.visit(body)
@@ -155,6 +157,8 @@ class OGCompiler(OGCodeVisitor):
                     for line in self.other_functions[keyword]["body"]:
                         self.visit(line)
                 self.function_name = previous_func_name
+            else:
+                raise Exception(f"Function {keyword} does not exist.")
         self.isFunction_params = False
         self.function_params.clear()
 
@@ -176,10 +180,13 @@ class OGCompiler(OGCodeVisitor):
         if ctx.IDENTIFIER(1):
             name = ctx.IDENTIFIER(1).getText()
             value = self.variables_values[self.function_name].get(name)
+            if value is None:
+                raise Exception(f"Variable {name} does not exist.")
+        variable = ctx.IDENTIFIER(0).getText()
         if self.isFunction_params:
-            self.function_params[ctx.IDENTIFIER(0).getText()] = value
-        else:
-            self.variables_values[self.function_name][ctx.IDENTIFIER(0).getText()] = value
+            self.function_params[variable] = value
+        else: 
+            self.variables_values[self.function_name][variable] = value
                 
 
     def visitVariableDefinition(self, ctx):
@@ -220,6 +227,8 @@ class OGCompiler(OGCodeVisitor):
     def visitIncrementDecrementStatement(self, ctx):
         var_name = ctx.IDENTIFIER().getText()
         value = self.helper.getFloatValue(var_name)
+        if value is None:
+            raise Exception(f"Variable {var_name} does not exist.")
         if ctx.INCREMENT_OPERATOR():
             value += 1
         if ctx.DECREMENT_OPERATOR():
@@ -253,7 +262,7 @@ class OGCompiler(OGCodeVisitor):
         }
         # Sprawdzenie, czy operator jest obsługiwany
         if operator not in operators:
-            raise Exception(f"Nieznany operator porównania: {operator}")
+            raise Exception(f"Unkown comparing operator: {operator}")
         
         left = self.helper.getFloatValue(left)
         right = self.helper.getFloatValue(right)
@@ -269,7 +278,7 @@ class OGCompiler(OGCodeVisitor):
             elif logic_op == 'or':
                 result = result or next_condition
             else:
-                raise Exception(f"Nieznany operator logiczny: {logic_op}")
+                raise Exception(f"Unknown logic operator: {logic_op}")
             i += 4  # Przejście do kolejnego operatora logicznego
         return result
     

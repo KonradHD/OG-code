@@ -10,7 +10,7 @@ else:
 
 def serializedATN():
     return [
-        4,1,42,249,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,42,252,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,1,0,
         1,0,1,1,5,1,44,8,1,10,1,12,1,47,9,1,1,1,1,1,1,2,1,2,1,2,1,2,1,2,
@@ -26,77 +26,79 @@ def serializedATN():
         172,9,10,1,10,1,10,3,10,176,8,10,1,11,1,11,1,11,1,11,1,11,1,11,3,
         11,184,8,11,3,11,186,8,11,1,12,1,12,1,12,1,13,1,13,1,13,1,13,1,13,
         1,13,1,13,3,13,198,8,13,1,14,1,14,1,14,1,15,1,15,1,15,1,15,1,15,
-        1,15,1,15,1,15,1,15,3,15,212,8,15,1,15,1,15,1,15,5,15,217,8,15,10,
-        15,12,15,220,9,15,1,16,1,16,1,16,1,16,1,16,5,16,227,8,16,10,16,12,
-        16,230,9,16,1,17,1,17,1,18,1,18,1,18,3,18,237,8,18,1,18,1,18,1,19,
-        1,19,1,19,5,19,244,8,19,10,19,12,19,247,9,19,1,19,0,1,30,20,0,2,
-        4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,0,7,1,0,7,8,1,
-        0,39,40,1,0,2,6,1,0,9,14,1,0,15,16,1,0,21,22,1,0,38,39,261,0,40,
-        1,0,0,0,2,45,1,0,0,0,4,50,1,0,0,0,6,63,1,0,0,0,8,79,1,0,0,0,10,103,
-        1,0,0,0,12,105,1,0,0,0,14,108,1,0,0,0,16,129,1,0,0,0,18,142,1,0,
-        0,0,20,175,1,0,0,0,22,177,1,0,0,0,24,187,1,0,0,0,26,190,1,0,0,0,
-        28,199,1,0,0,0,30,211,1,0,0,0,32,221,1,0,0,0,34,231,1,0,0,0,36,233,
-        1,0,0,0,38,240,1,0,0,0,40,41,3,2,1,0,41,1,1,0,0,0,42,44,3,6,3,0,
-        43,42,1,0,0,0,44,47,1,0,0,0,45,43,1,0,0,0,45,46,1,0,0,0,46,48,1,
-        0,0,0,47,45,1,0,0,0,48,49,3,4,2,0,49,3,1,0,0,0,50,51,5,29,0,0,51,
-        52,5,37,0,0,52,53,5,25,0,0,53,54,5,26,0,0,54,58,5,27,0,0,55,57,3,
-        10,5,0,56,55,1,0,0,0,57,60,1,0,0,0,58,56,1,0,0,0,58,59,1,0,0,0,59,
-        61,1,0,0,0,60,58,1,0,0,0,61,62,5,28,0,0,62,5,1,0,0,0,63,64,5,29,
-        0,0,64,65,5,39,0,0,65,67,5,25,0,0,66,68,3,8,4,0,67,66,1,0,0,0,67,
-        68,1,0,0,0,68,69,1,0,0,0,69,70,5,26,0,0,70,74,5,27,0,0,71,73,3,10,
-        5,0,72,71,1,0,0,0,73,76,1,0,0,0,74,72,1,0,0,0,74,75,1,0,0,0,75,77,
-        1,0,0,0,76,74,1,0,0,0,77,78,5,28,0,0,78,7,1,0,0,0,79,80,5,30,0,0,
-        80,86,5,39,0,0,81,82,5,19,0,0,82,83,5,30,0,0,83,85,5,39,0,0,84,81,
-        1,0,0,0,85,88,1,0,0,0,86,84,1,0,0,0,86,87,1,0,0,0,87,9,1,0,0,0,88,
-        86,1,0,0,0,89,104,3,20,10,0,90,91,3,36,18,0,91,92,5,20,0,0,92,104,
-        1,0,0,0,93,94,3,22,11,0,94,95,5,20,0,0,95,104,1,0,0,0,96,104,3,28,
-        14,0,97,104,3,14,7,0,98,104,3,24,12,0,99,100,3,12,6,0,100,101,5,
-        20,0,0,101,104,1,0,0,0,102,104,3,34,17,0,103,89,1,0,0,0,103,90,1,
-        0,0,0,103,93,1,0,0,0,103,96,1,0,0,0,103,97,1,0,0,0,103,98,1,0,0,
-        0,103,99,1,0,0,0,103,102,1,0,0,0,104,11,1,0,0,0,105,106,5,39,0,0,
-        106,107,7,0,0,0,107,13,1,0,0,0,108,109,5,33,0,0,109,110,5,25,0,0,
-        110,111,3,32,16,0,111,112,5,26,0,0,112,116,5,27,0,0,113,115,3,10,
-        5,0,114,113,1,0,0,0,115,118,1,0,0,0,116,114,1,0,0,0,116,117,1,0,
-        0,0,117,119,1,0,0,0,118,116,1,0,0,0,119,123,5,28,0,0,120,122,3,16,
-        8,0,121,120,1,0,0,0,122,125,1,0,0,0,123,121,1,0,0,0,123,124,1,0,
-        0,0,124,127,1,0,0,0,125,123,1,0,0,0,126,128,3,18,9,0,127,126,1,0,
-        0,0,127,128,1,0,0,0,128,15,1,0,0,0,129,130,5,35,0,0,130,131,5,25,
-        0,0,131,132,3,32,16,0,132,133,5,26,0,0,133,137,5,27,0,0,134,136,
-        3,10,5,0,135,134,1,0,0,0,136,139,1,0,0,0,137,135,1,0,0,0,137,138,
-        1,0,0,0,138,140,1,0,0,0,139,137,1,0,0,0,140,141,5,28,0,0,141,17,
-        1,0,0,0,142,143,5,34,0,0,143,147,5,27,0,0,144,146,3,10,5,0,145,144,
-        1,0,0,0,146,149,1,0,0,0,147,145,1,0,0,0,147,148,1,0,0,0,148,150,
-        1,0,0,0,149,147,1,0,0,0,150,151,5,28,0,0,151,19,1,0,0,0,152,153,
-        5,31,0,0,153,154,7,1,0,0,154,158,5,27,0,0,155,157,3,10,5,0,156,155,
-        1,0,0,0,157,160,1,0,0,0,158,156,1,0,0,0,158,159,1,0,0,0,159,161,
-        1,0,0,0,160,158,1,0,0,0,161,176,5,28,0,0,162,163,5,32,0,0,163,164,
-        5,25,0,0,164,165,3,32,16,0,165,166,5,26,0,0,166,170,5,27,0,0,167,
-        169,3,10,5,0,168,167,1,0,0,0,169,172,1,0,0,0,170,168,1,0,0,0,170,
-        171,1,0,0,0,171,173,1,0,0,0,172,170,1,0,0,0,173,174,5,28,0,0,174,
-        176,1,0,0,0,175,152,1,0,0,0,175,162,1,0,0,0,176,21,1,0,0,0,177,178,
-        5,30,0,0,178,185,5,39,0,0,179,183,5,1,0,0,180,184,3,30,15,0,181,
-        184,5,17,0,0,182,184,5,18,0,0,183,180,1,0,0,0,183,181,1,0,0,0,183,
-        182,1,0,0,0,184,186,1,0,0,0,185,179,1,0,0,0,185,186,1,0,0,0,186,
-        23,1,0,0,0,187,188,3,26,13,0,188,189,5,20,0,0,189,25,1,0,0,0,190,
-        191,5,39,0,0,191,197,5,1,0,0,192,198,3,30,15,0,193,198,5,17,0,0,
-        194,198,5,18,0,0,195,198,5,42,0,0,196,198,5,39,0,0,197,192,1,0,0,
-        0,197,193,1,0,0,0,197,194,1,0,0,0,197,195,1,0,0,0,197,196,1,0,0,
-        0,198,27,1,0,0,0,199,200,3,30,15,0,200,201,5,20,0,0,201,29,1,0,0,
-        0,202,203,6,15,-1,0,203,204,5,25,0,0,204,205,3,30,15,0,205,206,5,
-        26,0,0,206,207,7,2,0,0,207,208,3,30,15,3,208,212,1,0,0,0,209,212,
-        5,40,0,0,210,212,5,39,0,0,211,202,1,0,0,0,211,209,1,0,0,0,211,210,
-        1,0,0,0,212,218,1,0,0,0,213,214,10,4,0,0,214,215,7,2,0,0,215,217,
-        3,30,15,5,216,213,1,0,0,0,217,220,1,0,0,0,218,216,1,0,0,0,218,219,
-        1,0,0,0,219,31,1,0,0,0,220,218,1,0,0,0,221,222,3,30,15,0,222,223,
-        7,3,0,0,223,228,3,30,15,0,224,225,7,4,0,0,225,227,3,32,16,0,226,
-        224,1,0,0,0,227,230,1,0,0,0,228,226,1,0,0,0,228,229,1,0,0,0,229,
-        33,1,0,0,0,230,228,1,0,0,0,231,232,7,5,0,0,232,35,1,0,0,0,233,234,
-        7,6,0,0,234,236,5,25,0,0,235,237,3,38,19,0,236,235,1,0,0,0,236,237,
-        1,0,0,0,237,238,1,0,0,0,238,239,5,26,0,0,239,37,1,0,0,0,240,245,
-        3,26,13,0,241,242,5,19,0,0,242,244,3,26,13,0,243,241,1,0,0,0,244,
-        247,1,0,0,0,245,243,1,0,0,0,245,246,1,0,0,0,246,39,1,0,0,0,247,245,
-        1,0,0,0,22,45,58,67,74,86,103,116,123,127,137,147,158,170,175,183,
-        185,197,211,218,228,236,245
+        1,15,1,15,1,15,1,15,3,15,212,8,15,1,15,1,15,1,15,1,15,1,15,1,15,
+        5,15,220,8,15,10,15,12,15,223,9,15,1,16,1,16,1,16,1,16,1,16,5,16,
+        230,8,16,10,16,12,16,233,9,16,1,17,1,17,1,18,1,18,1,18,3,18,240,
+        8,18,1,18,1,18,1,19,1,19,1,19,5,19,247,8,19,10,19,12,19,250,9,19,
+        1,19,0,1,30,20,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,
+        36,38,0,8,1,0,7,8,1,0,39,40,1,0,4,6,1,0,2,3,1,0,9,14,1,0,15,16,1,
+        0,21,22,1,0,38,39,266,0,40,1,0,0,0,2,45,1,0,0,0,4,50,1,0,0,0,6,63,
+        1,0,0,0,8,79,1,0,0,0,10,103,1,0,0,0,12,105,1,0,0,0,14,108,1,0,0,
+        0,16,129,1,0,0,0,18,142,1,0,0,0,20,175,1,0,0,0,22,177,1,0,0,0,24,
+        187,1,0,0,0,26,190,1,0,0,0,28,199,1,0,0,0,30,211,1,0,0,0,32,224,
+        1,0,0,0,34,234,1,0,0,0,36,236,1,0,0,0,38,243,1,0,0,0,40,41,3,2,1,
+        0,41,1,1,0,0,0,42,44,3,6,3,0,43,42,1,0,0,0,44,47,1,0,0,0,45,43,1,
+        0,0,0,45,46,1,0,0,0,46,48,1,0,0,0,47,45,1,0,0,0,48,49,3,4,2,0,49,
+        3,1,0,0,0,50,51,5,29,0,0,51,52,5,37,0,0,52,53,5,25,0,0,53,54,5,26,
+        0,0,54,58,5,27,0,0,55,57,3,10,5,0,56,55,1,0,0,0,57,60,1,0,0,0,58,
+        56,1,0,0,0,58,59,1,0,0,0,59,61,1,0,0,0,60,58,1,0,0,0,61,62,5,28,
+        0,0,62,5,1,0,0,0,63,64,5,29,0,0,64,65,5,39,0,0,65,67,5,25,0,0,66,
+        68,3,8,4,0,67,66,1,0,0,0,67,68,1,0,0,0,68,69,1,0,0,0,69,70,5,26,
+        0,0,70,74,5,27,0,0,71,73,3,10,5,0,72,71,1,0,0,0,73,76,1,0,0,0,74,
+        72,1,0,0,0,74,75,1,0,0,0,75,77,1,0,0,0,76,74,1,0,0,0,77,78,5,28,
+        0,0,78,7,1,0,0,0,79,80,5,30,0,0,80,86,5,39,0,0,81,82,5,19,0,0,82,
+        83,5,30,0,0,83,85,5,39,0,0,84,81,1,0,0,0,85,88,1,0,0,0,86,84,1,0,
+        0,0,86,87,1,0,0,0,87,9,1,0,0,0,88,86,1,0,0,0,89,104,3,20,10,0,90,
+        91,3,36,18,0,91,92,5,20,0,0,92,104,1,0,0,0,93,94,3,22,11,0,94,95,
+        5,20,0,0,95,104,1,0,0,0,96,104,3,28,14,0,97,104,3,14,7,0,98,104,
+        3,24,12,0,99,100,3,12,6,0,100,101,5,20,0,0,101,104,1,0,0,0,102,104,
+        3,34,17,0,103,89,1,0,0,0,103,90,1,0,0,0,103,93,1,0,0,0,103,96,1,
+        0,0,0,103,97,1,0,0,0,103,98,1,0,0,0,103,99,1,0,0,0,103,102,1,0,0,
+        0,104,11,1,0,0,0,105,106,5,39,0,0,106,107,7,0,0,0,107,13,1,0,0,0,
+        108,109,5,33,0,0,109,110,5,25,0,0,110,111,3,32,16,0,111,112,5,26,
+        0,0,112,116,5,27,0,0,113,115,3,10,5,0,114,113,1,0,0,0,115,118,1,
+        0,0,0,116,114,1,0,0,0,116,117,1,0,0,0,117,119,1,0,0,0,118,116,1,
+        0,0,0,119,123,5,28,0,0,120,122,3,16,8,0,121,120,1,0,0,0,122,125,
+        1,0,0,0,123,121,1,0,0,0,123,124,1,0,0,0,124,127,1,0,0,0,125,123,
+        1,0,0,0,126,128,3,18,9,0,127,126,1,0,0,0,127,128,1,0,0,0,128,15,
+        1,0,0,0,129,130,5,35,0,0,130,131,5,25,0,0,131,132,3,32,16,0,132,
+        133,5,26,0,0,133,137,5,27,0,0,134,136,3,10,5,0,135,134,1,0,0,0,136,
+        139,1,0,0,0,137,135,1,0,0,0,137,138,1,0,0,0,138,140,1,0,0,0,139,
+        137,1,0,0,0,140,141,5,28,0,0,141,17,1,0,0,0,142,143,5,34,0,0,143,
+        147,5,27,0,0,144,146,3,10,5,0,145,144,1,0,0,0,146,149,1,0,0,0,147,
+        145,1,0,0,0,147,148,1,0,0,0,148,150,1,0,0,0,149,147,1,0,0,0,150,
+        151,5,28,0,0,151,19,1,0,0,0,152,153,5,31,0,0,153,154,7,1,0,0,154,
+        158,5,27,0,0,155,157,3,10,5,0,156,155,1,0,0,0,157,160,1,0,0,0,158,
+        156,1,0,0,0,158,159,1,0,0,0,159,161,1,0,0,0,160,158,1,0,0,0,161,
+        176,5,28,0,0,162,163,5,32,0,0,163,164,5,25,0,0,164,165,3,32,16,0,
+        165,166,5,26,0,0,166,170,5,27,0,0,167,169,3,10,5,0,168,167,1,0,0,
+        0,169,172,1,0,0,0,170,168,1,0,0,0,170,171,1,0,0,0,171,173,1,0,0,
+        0,172,170,1,0,0,0,173,174,5,28,0,0,174,176,1,0,0,0,175,152,1,0,0,
+        0,175,162,1,0,0,0,176,21,1,0,0,0,177,178,5,30,0,0,178,185,5,39,0,
+        0,179,183,5,1,0,0,180,184,3,30,15,0,181,184,5,17,0,0,182,184,5,18,
+        0,0,183,180,1,0,0,0,183,181,1,0,0,0,183,182,1,0,0,0,184,186,1,0,
+        0,0,185,179,1,0,0,0,185,186,1,0,0,0,186,23,1,0,0,0,187,188,3,26,
+        13,0,188,189,5,20,0,0,189,25,1,0,0,0,190,191,5,39,0,0,191,197,5,
+        1,0,0,192,198,3,30,15,0,193,198,5,17,0,0,194,198,5,18,0,0,195,198,
+        5,42,0,0,196,198,5,39,0,0,197,192,1,0,0,0,197,193,1,0,0,0,197,194,
+        1,0,0,0,197,195,1,0,0,0,197,196,1,0,0,0,198,27,1,0,0,0,199,200,3,
+        30,15,0,200,201,5,20,0,0,201,29,1,0,0,0,202,203,6,15,-1,0,203,204,
+        5,25,0,0,204,205,3,30,15,0,205,206,5,26,0,0,206,212,1,0,0,0,207,
+        212,5,40,0,0,208,212,5,39,0,0,209,210,5,3,0,0,210,212,3,30,15,1,
+        211,202,1,0,0,0,211,207,1,0,0,0,211,208,1,0,0,0,211,209,1,0,0,0,
+        212,221,1,0,0,0,213,214,10,6,0,0,214,215,7,2,0,0,215,220,3,30,15,
+        7,216,217,10,5,0,0,217,218,7,3,0,0,218,220,3,30,15,6,219,213,1,0,
+        0,0,219,216,1,0,0,0,220,223,1,0,0,0,221,219,1,0,0,0,221,222,1,0,
+        0,0,222,31,1,0,0,0,223,221,1,0,0,0,224,225,3,30,15,0,225,226,7,4,
+        0,0,226,231,3,30,15,0,227,228,7,5,0,0,228,230,3,32,16,0,229,227,
+        1,0,0,0,230,233,1,0,0,0,231,229,1,0,0,0,231,232,1,0,0,0,232,33,1,
+        0,0,0,233,231,1,0,0,0,234,235,7,6,0,0,235,35,1,0,0,0,236,237,7,7,
+        0,0,237,239,5,25,0,0,238,240,3,38,19,0,239,238,1,0,0,0,239,240,1,
+        0,0,0,240,241,1,0,0,0,241,242,5,26,0,0,242,37,1,0,0,0,243,248,3,
+        26,13,0,244,245,5,19,0,0,245,247,3,26,13,0,246,244,1,0,0,0,247,250,
+        1,0,0,0,248,246,1,0,0,0,248,249,1,0,0,0,249,39,1,0,0,0,250,248,1,
+        0,0,0,23,45,58,67,74,86,103,116,123,127,137,147,158,170,175,183,
+        185,197,211,219,221,231,239,248
     ]
 
 class OGCodeParser ( Parser ):
@@ -399,7 +401,7 @@ class OGCodeParser ( Parser ):
             self.state = 58
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321856) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321864) != 0):
                 self.state = 55
                 self.body()
                 self.state = 60
@@ -501,7 +503,7 @@ class OGCodeParser ( Parser ):
             self.state = 74
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321856) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321864) != 0):
                 self.state = 71
                 self.body()
                 self.state = 76
@@ -877,7 +879,7 @@ class OGCodeParser ( Parser ):
             self.state = 116
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321856) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321864) != 0):
                 self.state = 113
                 self.body()
                 self.state = 118
@@ -986,7 +988,7 @@ class OGCodeParser ( Parser ):
             self.state = 137
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321856) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321864) != 0):
                 self.state = 134
                 self.body()
                 self.state = 139
@@ -1061,7 +1063,7 @@ class OGCodeParser ( Parser ):
             self.state = 147
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321856) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321864) != 0):
                 self.state = 144
                 self.body()
                 self.state = 149
@@ -1166,7 +1168,7 @@ class OGCodeParser ( Parser ):
                 self.state = 158
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321856) != 0):
+                while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321864) != 0):
                     self.state = 155
                     self.body()
                     self.state = 160
@@ -1191,7 +1193,7 @@ class OGCodeParser ( Parser ):
                 self.state = 170
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321856) != 0):
+                while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1940291321864) != 0):
                     self.state = 167
                     self.body()
                     self.state = 172
@@ -1279,7 +1281,7 @@ class OGCodeParser ( Parser ):
                 self.state = 183
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
-                if token in [25, 39, 40]:
+                if token in [3, 25, 39, 40]:
                     self.state = 180
                     self.expression(0)
                     pass
@@ -1528,8 +1530,11 @@ class OGCodeParser ( Parser ):
         def RIGHT_PARENTHESIS(self):
             return self.getToken(OGCodeParser.RIGHT_PARENTHESIS, 0)
 
-        def PLUS_OPERATOR(self):
-            return self.getToken(OGCodeParser.PLUS_OPERATOR, 0)
+        def NUMBER(self):
+            return self.getToken(OGCodeParser.NUMBER, 0)
+
+        def IDENTIFIER(self):
+            return self.getToken(OGCodeParser.IDENTIFIER, 0)
 
         def MINUS_OPERATOR(self):
             return self.getToken(OGCodeParser.MINUS_OPERATOR, 0)
@@ -1543,11 +1548,8 @@ class OGCodeParser ( Parser ):
         def MODULO_OPERATOR(self):
             return self.getToken(OGCodeParser.MODULO_OPERATOR, 0)
 
-        def NUMBER(self):
-            return self.getToken(OGCodeParser.NUMBER, 0)
-
-        def IDENTIFIER(self):
-            return self.getToken(OGCodeParser.IDENTIFIER, 0)
+        def PLUS_OPERATOR(self):
+            return self.getToken(OGCodeParser.PLUS_OPERATOR, 0)
 
         def getRuleIndex(self):
             return OGCodeParser.RULE_expression
@@ -1588,54 +1590,76 @@ class OGCodeParser ( Parser ):
                 self.expression(0)
                 self.state = 205
                 self.match(OGCodeParser.RIGHT_PARENTHESIS)
-                self.state = 206
-                _la = self._input.LA(1)
-                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 124) != 0)):
-                    self._errHandler.recoverInline(self)
-                else:
-                    self._errHandler.reportMatch(self)
-                    self.consume()
-                self.state = 207
-                self.expression(3)
                 pass
             elif token in [40]:
-                self.state = 209
+                self.state = 207
                 self.match(OGCodeParser.NUMBER)
                 pass
             elif token in [39]:
-                self.state = 210
+                self.state = 208
                 self.match(OGCodeParser.IDENTIFIER)
+                pass
+            elif token in [3]:
+                self.state = 209
+                self.match(OGCodeParser.MINUS_OPERATOR)
+                self.state = 210
+                self.expression(1)
                 pass
             else:
                 raise NoViableAltException(self)
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 218
+            self.state = 221
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,18,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,19,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    localctx = OGCodeParser.ExpressionContext(self, _parentctx, _parentState)
-                    self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                    self.state = 213
-                    if not self.precpred(self._ctx, 4):
-                        from antlr4.error.Errors import FailedPredicateException
-                        raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
-                    self.state = 214
-                    _la = self._input.LA(1)
-                    if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 124) != 0)):
-                        self._errHandler.recoverInline(self)
-                    else:
-                        self._errHandler.reportMatch(self)
-                        self.consume()
-                    self.state = 215
-                    self.expression(5) 
-                self.state = 220
+                    self.state = 219
+                    self._errHandler.sync(self)
+                    la_ = self._interp.adaptivePredict(self._input,18,self._ctx)
+                    if la_ == 1:
+                        localctx = OGCodeParser.ExpressionContext(self, _parentctx, _parentState)
+                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
+                        self.state = 213
+                        if not self.precpred(self._ctx, 6):
+                            from antlr4.error.Errors import FailedPredicateException
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 6)")
+                        self.state = 214
+                        _la = self._input.LA(1)
+                        if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 112) != 0)):
+                            self._errHandler.recoverInline(self)
+                        else:
+                            self._errHandler.reportMatch(self)
+                            self.consume()
+                        self.state = 215
+                        self.expression(7)
+                        pass
+
+                    elif la_ == 2:
+                        localctx = OGCodeParser.ExpressionContext(self, _parentctx, _parentState)
+                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
+                        self.state = 216
+                        if not self.precpred(self._ctx, 5):
+                            from antlr4.error.Errors import FailedPredicateException
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
+                        self.state = 217
+                        _la = self._input.LA(1)
+                        if not(_la==2 or _la==3):
+                            self._errHandler.recoverInline(self)
+                        else:
+                            self._errHandler.reportMatch(self)
+                            self.consume()
+                        self.state = 218
+                        self.expression(6)
+                        pass
+
+             
+                self.state = 223
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,18,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,19,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1724,34 +1748,34 @@ class OGCodeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 221
+            self.state = 224
             self.expression(0)
-            self.state = 222
+            self.state = 225
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 32256) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 223
+            self.state = 226
             self.expression(0)
-            self.state = 228
+            self.state = 231
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,19,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,20,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
-                    self.state = 224
+                    self.state = 227
                     _la = self._input.LA(1)
                     if not(_la==15 or _la==16):
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
                         self.consume()
-                    self.state = 225
+                    self.state = 228
                     self.condition() 
-                self.state = 230
+                self.state = 233
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,19,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,20,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1802,7 +1826,7 @@ class OGCodeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 231
+            self.state = 234
             _la = self._input.LA(1)
             if not(_la==21 or _la==22):
                 self._errHandler.recoverInline(self)
@@ -1868,24 +1892,24 @@ class OGCodeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 233
+            self.state = 236
             _la = self._input.LA(1)
             if not(_la==38 or _la==39):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 234
+            self.state = 237
             self.match(OGCodeParser.LEFT_PARENTHESIS)
-            self.state = 236
+            self.state = 239
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==39:
-                self.state = 235
+                self.state = 238
                 self.parameters()
 
 
-            self.state = 238
+            self.state = 241
             self.match(OGCodeParser.RIGHT_PARENTHESIS)
         except RecognitionException as re:
             localctx.exception = re
@@ -1943,17 +1967,17 @@ class OGCodeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 240
+            self.state = 243
             self.assignment()
-            self.state = 245
+            self.state = 248
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==19:
-                self.state = 241
+                self.state = 244
                 self.match(OGCodeParser.COMMA_SEPARATOR)
-                self.state = 242
+                self.state = 245
                 self.assignment()
-                self.state = 247
+                self.state = 250
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1979,7 +2003,11 @@ class OGCodeParser ( Parser ):
 
     def expression_sempred(self, localctx:ExpressionContext, predIndex:int):
             if predIndex == 0:
-                return self.precpred(self._ctx, 4)
+                return self.precpred(self._ctx, 6)
+         
+
+            if predIndex == 1:
+                return self.precpred(self._ctx, 5)
          
 
 
