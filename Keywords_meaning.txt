@@ -1,15 +1,44 @@
-forward(30, axis='X'/'Y'/'Z') - do przodu 30 mm - G0, G1
-setPenTemp(344, wait=True) - M104 S200, M109 S200
-setTableTemp() - M140 S60, M190 S60
-move(x=30, y=43 z=45), przesuń się do xyz - G0, G1
-turn() - skręca w prawo o x stopni - 
+forward(L=30, axis='X'/'Y'/'Z') - do przodu 30 mm - G0, G1
+setPenTemp(T=344, wait=True) - M104 S200, M109 S200
+setTableTemp(T=300, wait=True) - M140 S60, M190 S60
+move(X=30, Y=43), przesuń się do xyz - G0, G1
+turn(angle=90) - skręca w prawo o x stopni - 
 circle(R=30, X=0, Y=0) - rysuje okrąg o promieniu R i środku w X, Y - G3, G4
 wait(300) - G4 
 cleanNozzle() - usuwanie pozostałości atramentu z dyszy - G12
-ground(XY/XZ/YZ) - wybieranie płaszczyzny w której operuje głowica - G17-19
-unit("inches", "milimeters", "centimeters") - wybór jednostki - G20, G21
+ground(surface=XY/XZ/YZ) - wybieranie płaszczyzny w której operuje głowica - G17-19
+unit(U='inches', 'milimeters', 'centimeters') - wybór jednostki - G20, G21
 autoLevel(save=True) - uruchamia procedurę automatycznego poziomowania stołu, jeżeli true to zapisuje konfiguracje - G29
-cooler(True) - włącza wentylator - M106, M107
-absolutePositioning(True) - pozycje absolutne - G90, G91
+cooler(C=True) - włącza wentylator - M106, M107
+absolutePositioning(pos=True) - pozycje absolutne - G90, G91
 filledCircle(R=30, X=0, Y=0) - rysuje wypełnione koło 
 drawLetter(letter="M", L=100, W=50, X0=0, Y0=0) - rysuje literke M, X0, Y0 - pozycja środkowa, L - długość prostokąta, w którym literka będzie się mieścić, W - szerokość prostokąta 
+setAxis(angle='X')
+moveVertically(Z=20); G0 Z20 F600, lub G1 Z10 F300
+drawSquare(X=0, Y=0, L=20) 
+
+
+G21 ; Ustaw jednostki na milimetry
+G90 ; Ustaw pozycjonowanie absolutne
+M82 ; Ustaw pozycjonowanie ekstrudera na absolutne
+M104 S200 ; Ustaw temperaturę ekstrudera na 200°C
+M140 S60 ; Ustaw temperaturę stołu na 60°C
+G28 ; Homowanie wszystkich osi
+M109 S200 ; Czekaj na osiągnięcie temperatury ekstrudera
+M190 S60 ; Czekaj na osiągnięcie temperatury stołu
+G92 E0 ; Resetuj pozycję ekstrudera
+G1 F1500 ; Ustaw prędkość ruchu na 1500 mm/min
+
+
+Na koniec:
+
+M30 – zakończenie programu, reset parametrów i przewinięcie programu na początek 
+M02 – zakończenie programu i reset parametrów, bez przewijania do początku
+M00 / M01 – przerwanie programu (opcjonalnie, zależnie od ustawienia przełącznika stop) 
+M104 S0 – wyłączenie grzałki ekstrudera (ustawienie temperatury na 0) 
+M140 S0 – wyłączenie grzałki stołu grzewczego 
+M107 – wyłączenie wentylatora chłodzącego (drukarek 3D) 
+G28 – homowanie osi (najczęściej na koniec, aby głowica wróciła do pozycji referencyjnej) 
+G90 – powrót do pozycjonowania absolutnego (opcjonalnie) 
+M84 – wyłączenie silników krokowych (odłączenie prądu)
+xd
