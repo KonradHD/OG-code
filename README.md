@@ -1,33 +1,37 @@
 # OG-code – Edukacyjny Język do Generowania G-code
 
-## Dane studentów
+## Autorzy
 
-**Martyna Gaj - margaj@student.agh.edu.pl**  
-**Konrad Ćwięka - kcwieka@student.agh.edu.pl**
-
-
+**Martyna Gaj – margaj@student.agh.edu.pl**  
+**Konrad Ćwięka – kcwieka@student.agh.edu.pl**
 
 ---
 
-## Założenia programu
+## 🎯 Cel projektu
 
-###  Ogólne cele programu
+**OG-code** to edukacyjny język programowania inspirowany językiem **Logo**, umożliwiający tworzenie prostych, wizualnych modeli za pomocą kodu, który następnie tłumaczony jest do **G-code** – języka sterującego drukarkami 3D. Projekt ma na celu:
 
-OG-code to edukacyjny język programowania inspirowany Logo, który umożliwia tworzenie prostych modeli do druku 3D. Celem projektu jest ułatwienie dzieciom i początkującym wejścia w świat programowania, myślenia algorytmicznego i projektowania przestrzennego, bez potrzeby znajomości zawiłości G-code. Pozwala to na zaciekawienie dzieci programowaniem i ucieleśnienie ich zmagań z programem.
+- Nauczanie podstaw programowania i myślenia algorytmicznego.
+- Pokazanie, jak programowanie może mieć fizyczne przełożenie w świecie rzeczywistym (druk 3D).
+- Umożliwienie graficznej symulacji "rysowania" jak w Logo (turtle graphics).
+- Zwiększenie atrakcyjności nauki przez interaktywność i natychmiastowy efekt działania kodu.
 
-###  Rodzaj translatora
+---
 
-**Kompilator** – tłumaczący OG-code bezpośrednio na G-code.
+## ⚙️ Charakterystyka
 
-###  Planowany wynik działania programu
+- **Typ translatora**: *Kompilator* (OG-code → G-code)
+- **Język implementacji**: *Python 3*
+- **Parser i lexer**: generowane za pomocą **ANTLR4**
+- **Dodatki**:
+  - Graficzna wizualizacja działania kodu OG-code w czasie rzeczywistym (z wykorzystaniem `turtle`)
+  - Kolorowanie składni w HTML
+  - Prosty interfejs z trzema zakładkami:
+    1. Edytor OG-code
+    2. Wygenerowany G-code
+    3. Wizualizacja rysunku
 
-- Kompilator języka OG-code do G-code
-- Opcjonalnie: graficzna symulacja rysunku 2D (prewizualizacja ścieżki)
-- Docelowo: wsparcie dla tworzenia modeli 3D przez wytłaczanie 2D
-
-###  Planowany język implementacji
-
-**Python**
+---
 
 ###  Sposób realizacji skanera/parsera
 
@@ -37,6 +41,20 @@ Planowane użycie generatorów parserów dla Pythona, np.:
 - [`Lark`](https://github.com/lark-parser/lark)
 
 ---
+
+## 🔤 Gramatyka OG-code
+
+Gramatyka została zapisana w pliku [`OGCode.g4`](grammar/OGCode.g4) i przetwarzana przez **ANTLR4**.
+
+Obsługiwane konstrukcje to m.in.:
+
+- Deklaracje funkcji (`function`)
+- Zmienne i przypisania (`let`)
+- Pętle `repeat`, `while`
+- Instrukcje warunkowe `if`, `else`
+- Operacje rysujące (`penDown`, `penUp`, `forward`, `turn`, `move`, `filledCircle`)
+- Wartości liczbowe, logiczne i tekstowe
+- Operatory matematyczne i logiczne
 
 ##  Opis tokenów
 
@@ -57,7 +75,18 @@ Planowane użycie generatorów parserów dla Pythona, np.:
 
 ---
 
-##  Gramatyka języka (BNF)
+## ✅ Przykładowy kod OG-code
 
-[Gramatyka OG-code](Grammar.g4)
+```js
+function start() {
+    penDown();
+    let bok = 40;
+    repeat 4 {
+        forward(bok);
+        turn(90);
+    }
+    penUp();
+}
 
+## Jak zainstalować
+plik requirement - to be announced
