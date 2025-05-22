@@ -37,8 +37,7 @@
 
 Planowane użycie generatorów parserów dla Pythona, np.:
 
-- [`PLY`](https://www.dabeaz.com/ply/)
-- [`Lark`](https://github.com/lark-parser/lark)
+- [`ANTLR4`](https://www.antlr.org/)
 
 ---
 
