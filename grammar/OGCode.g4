@@ -1,6 +1,5 @@
 grammar OGCode;
 
-
 program : funcDefinition;
 
 funcDefinition : otherFunction* startFunction;
@@ -104,12 +103,11 @@ WHILE_KEYWORD : 'while';
 IF_KEYWORD : 'if';
 ELSE_KEYWORD : 'else';
 ELSEIF_KEYWORD : 'elseif';
-BREAK_KEYWORD : 'break';
 START_KEYWORD : 'start';
 FUNCTIONS_KEYWORDS : 'forward' | 'move' | 'turn' | 'penUp' | 'penDown' | 'setPenTemp'
     | 'circle' | 'wait' | 'cleanNozzle' | 'ground' | 'unit' | 'autoLevel' | 'setAngle'
     | 'setTableTemp' | 'cooler' | 'absolutePositioning' | 'filledCircle' | 'drawLetter' 
-    | 'moveVertically' | 'drawSquare';
+    | 'moveVertically' | 'square' | 'nextSurface';
 
 // Helpers
 IDENTIFIER : [A-Za-z_][A-Za-z_0-9]*;

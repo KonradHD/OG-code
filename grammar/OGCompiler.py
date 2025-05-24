@@ -2,6 +2,7 @@ from OGCodeParser import OGCodeParser
 from OGCodeVisitor import OGCodeVisitor
 from sympy import sympify
 from CompilingHelper import Helper
+from intersectionAnalyzer import intersectionAnalyzer
 
 class OGCompiler(OGCodeVisitor):
     def __init__(self):
@@ -14,6 +15,8 @@ class OGCompiler(OGCodeVisitor):
         self.is_pen_up = False
         self.angle = 0
         self.helper = Helper(self)
+        self.intersection_analyzer = intersectionAnalyzer()
+        self.position = (0, 0, 0) # x, y, z - surface_number
 
 
     def compile(self, tree):
@@ -34,9 +37,14 @@ class OGCompiler(OGCodeVisitor):
     def visitStartFunction(self, ctx):
         self.function_name = "start"
         self.variables_values[self.function_name] = {}
+        self.output.append("M220 S100 ;Reset Feedrate")
+        self.output.append("M221 S100 ;Reset Flowrate")
+        self.output.append("M104 S200 ;Set final nozzle temp")
+        self.output.append("M190 S50 ;Set and wait for bed temp to stabilize ")
         self.output.append("G28")# można coś dodać jeszcze 
         for value in ctx.body():
             self.visit(value)
+        self.output.append("M106 S0 ;Turn-off fan ")
         self.output.append("M104 S0") # wyłączenie grzałki ekstrudera
         self.output.append("M140 S0") # wyłączenie grzałki stołu grzewczego
         self.output.append("M02") # zakończenie programu i reset parametrów

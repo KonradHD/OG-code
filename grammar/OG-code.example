@@ -21,6 +21,7 @@ function getSize(let i) {
   vamos = 4;
 
   cleanNozzle();
+  nextSurface();
 
   // warunek testowy (przykładowy if)
   if (size > 50) {
@@ -39,9 +40,6 @@ function start() {
     let bok = 40;
     let ile = 4;
     let krok = 0;
-/* fdspfsf 
-fds,fksd, false
-*/
     let x = (ile+12)*2;
     penDown();
     let y = ile / 3;
@@ -70,5 +68,5 @@ fds,fksd, false
     let par = 50;
     getSize(i=50);
     moveVertically(Z=10);
-    drawSquare(X=0, Y=0, L=30);
+    square(X=0, Y=0, L=30);
 }

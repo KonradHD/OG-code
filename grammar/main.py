@@ -21,10 +21,7 @@ def compile_to_GCode(input_path, output_path):
     parser.removeErrorListeners()
     parser.addErrorListener(MyErrorListener())
     tree = parser.program()
-    try:
-        compiler = OGCompiler()
-    except Exception as e:
-        print(f"Error: {e}")
+    compiler = OGCompiler()
     g_code = compiler.compile(tree)
 
     with open(output_path, "w", encoding="utf-8") as file:

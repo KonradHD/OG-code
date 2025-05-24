@@ -70,21 +70,22 @@ class Helper:
             if value is None:
                 raise Exception(f"Variable {variable} is not a string.")
         return value
-    
+
     
     # Metody OGCode
     def forward(self):
-        axis = self.getXYZValue("axis")
         length = self.getFloatValue("L")
-        if axis is None:
-            angle_rad = math.radians(self.compiler.angle)
-            x = math.cos(angle_rad)*length 
-            y = math.sin(angle_rad)*length
-            self.compiler.output.append(f"G1 X{x} Y{y}" if self.compiler.is_pen_up else f"G0 X{x} Y{y} F1000")
+        angle_rad = math.radians(self.compiler.angle)
+        new_x = round(math.cos(angle_rad)*length, 2)
+        new_y = round(math.sin(angle_rad)*length, 2)
+        old_x = self.compiler.position[0]
+        old_y = self.compiler.position[1]
+        self.compiler.position = (new_x, new_y, self.compiler.position[2])
+        if self.compiler.is_pen_up:
+            self.compiler.output.append(f"G1 X{new_x} Y{new_y}")
+            self.compiler.intersection_analyzer.save_line_coeffictients(old_x, old_y, new_x, new_y)
         else:
-            self.compiler.output.append("G91") # włączenie pozycjonowania względnego
-            self.compiler.output.append(f"G1 {axis}{length}" if self.compiler.is_pen_up else f"G0 {axis}{length} F1000")
-            self.compiler.output.append("G90") # włączenie pozycjonowania bezwzględnego
+            self.compiler.output.append(f"G0 X{new_x} Y{new_y} F1000")
 
     
     def setAngle(self):
@@ -118,9 +119,16 @@ class Helper:
 
 
     def move(self):
-        x = self.getFloatValue("X")
-        y = self.getFloatValue("Y")
-        self.compiler.output.append(f"G1 X{x} Y{y}" if self.compiler.is_pen_up else f"G0 X{x} Y{y} F1000")
+        new_x = self.getFloatValue("X")
+        new_y = self.getFloatValue("Y")
+        old_x = self.compiler.position[0]
+        old_y = self.compiler.position[1]
+        self.compiler.position = (new_x, new_y, self.compiler.position[2])
+        if self.compiler.is_pen_up:
+            self.compiler.output.append(f"G1 X{new_x} Y{new_y}")
+            self.compiler.intersection_analyzer.save_line_coeffictients(old_x, old_y, new_x, new_y)
+        else:
+            self.compiler.output.append(f"G0 X{new_x} Y{new_y} F1000")
 
 
     def filledCircle(self):
@@ -195,25 +203,64 @@ class Helper:
     def cleanNozzle(self):
         self.compiler.output.append("G12")
 
+
     def moveVertically(self):
         length = self.getFloatValue("Z")
         self.compiler.output.append(f"G1 Z{length}" if self.compiler.is_pen_up else f"G0 Z{length} F1000")
 
 
-    def drawSquare(self):
+    def square(self):
         L = self.getFloatValue("L")
-        x0 = self.getFloatValue("X")
-        y0 = self.getFloatValue("Y")
-        self.compiler.output.append(f"G1 X{x0 - L/2} Y{y0 - L/2}")
+        x0 = self.getFloatValue("X") - L/2
+        y0 = self.getFloatValue("Y") - L/2
+        middle_starting_point = False 
+        if x0 is None and y0 is None:
+           x0 = self.compiler.position[0]
+           y0 = self.compiler.position[1]
+        else: 
+            self.compiler.output.append(f"G1 X{x0} Y{y0}")
+            middle_starting_point = True
         self.compiler.output.append(f"M3") # start wrzeciona lub ekstrudera
         self.compiler.output.append("G91") # tryb przyrostowy (łatwiejsze przemieszczanie)
         self.compiler.output.append("M83") # ekstruder w trybie przyrostowym (dla druku 3D)
         
-        self.compiler.output.append(f"G0 X{x0 + L/2} Y{y0 - L/2}")
-        self.compiler.output.append(f"G0 X{x0 + L/2} Y{y0 + L/2}")
-        self.compiler.output.append(f"G0 X{x0 - L/2} Y{y0 + L/2}")
-        self.compiler.output.append(f"G0 X{x0 - L/2} Y{y0 - L/2}")
-            
+        self.compiler.output.append(f"G0 X{x0 + L} Y{y0}")
+        self.compiler.intersection_analyzer.save_line_coeffictients(x0, y0, x0+L, y0)
+        self.compiler.output.append(f"G0 X{x0 + L} Y{y0 + L}")
+        self.compiler.intersection_analyzer.save_line_coeffictients(x0+L, y0, x0+L, y0+L)
+        self.compiler.output.append(f"G0 X{x0} Y{y0 + L}")
+        self.compiler.intersection_analyzer.save_line_coeffictients(x0 +L, y0+L, x0, y0+L)
+        self.compiler.output.append(f"G0 X{x0} Y{y0}")
+        self.compiler.intersection_analyzer.save_line_coeffictients(x0, y0+L, x0, y0)
+        
         self.compiler.output.append("G90") # tryb absolutny
         self.compiler.output.append("M5") # stop wrzeciona
-        self.compiler.output.append(f"G0 X{x0} Y{y0}") # kończy na środku kwadratu
+        if middle_starting_point:
+            self.compiler.position = (x0+L/2, y0+L/2, self.compiler.position[2])# kończy na środku kwadratu
+            self.compiler.output.append(f"G1 X{x0 + L/2} Y{y0 + L/2}") # kończy na środku kwadratu
+
+
+    def nextSurface(self):
+        self.compiler.position = self.compiler.position[:2] + (self.compiler.position[2] + 1,) 
+        self.compiler.intersection_analyzer.next_surface()
+
+
+    def circle(self):
+        R = self.getFloatValue("L")
+        x0 = self.getFloatValue("X")
+        y0 = self.getFloatValue("Y")
+        if x0 is None and y0 is None:
+           x0 = self.compiler.position[0]
+           y0 = self.compiler.position[1]
+        else: 
+            self.compiler.position = (x0, y0, self.compiler.position[2])# kończy na środku okregu
+        self.compiler.output.append(f"G1 X{x0-R} Y{y0-R}")
+        self.compiler.output.append("M3") # start wrzeciona lub ekstrudera
+        self.compiler.output.append("M83") # ekstruder w trybie przyrostowym (dla druku 3D)
+        
+        self.compiler.output.append(f"G2 X{x0 - R} Y{y0} I{R} J0")
+        self.compiler.intersection_analyzer.save_circle_coeffictiens(x0, y0, R)
+        
+        self.compiler.output.append("M5") # stop wrzeciona
+        self.compiler.output.append(f"G1 X{x0} Y{y0}")
+
