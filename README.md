@@ -78,13 +78,13 @@ Obsługiwane konstrukcje to m.in.:
 
 ```js
 function start() {
-    penDown();
+    penUp();
     let bok = 40;
     repeat 4 {
-        forward(bok);
-        turn(90);
+        forward(L=bok);
+        turn(angle=90);
     }
-    penUp();
+    penDown();
 }
 
 ## Jak zainstalować
