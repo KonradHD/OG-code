@@ -2,45 +2,102 @@ from OGCodeParser import OGCodeParser
 from OGCodeVisitor import OGCodeVisitor
 from sympy import sympify
 from CompilingHelper import Helper
+from PIL import Image, ImageDraw
 
 class OGCompiler(OGCodeVisitor):
     def __init__(self):
-        self.output = [] 
-        self.function_name = "" # currently compiling function
-        self.other_functions = {} # function_name:  { "params": ["W", "H"], "body": ctx.body() }
-        self.variables_values = {} # function_name : {var : value }
+        self.output = []
+        self.function_name = ""
+        self.other_functions = {}
+        self.variables_values = {}
         self.isFunction_params = False
         self.function_params = {}
         self.is_pen_up = False
         self.angle = 0
         self.helper = Helper(self)
 
+        # Inicjalizacja obrazu
+        self.image_size = (500, 500)
+        self.image = Image.new("RGB", self.image_size, "white")
+        self.draw = ImageDraw.Draw(self.image)
+
+        # Pozycja startowa (środek obrazu)
+        self.current_pos = (self.image_size[0] // 2, self.image_size[1] // 2)
 
     def compile(self, tree):
         self.visit(tree)
         return "\n".join(self.output)
 
-    
     def visitProgram(self, ctx):
         self.visit(ctx.funcDefinition())
-
 
     def visitFuncDefinition(self, ctx):
         for function in ctx.otherFunction():
             self.visit(function)
         self.visit(ctx.startFunction())
 
-
     def visitStartFunction(self, ctx):
         self.function_name = "start"
         self.variables_values[self.function_name] = {}
-        self.output.append("G28")# można coś dodać jeszcze 
+        self.output.append("G28")
         for value in ctx.body():
             self.visit(value)
-        self.output.append("M104 S0") # wyłączenie grzałki ekstrudera
-        self.output.append("M140 S0") # wyłączenie grzałki stołu grzewczego
-        self.output.append("M02") # zakończenie programu i reset parametrów
+        self.output.append("M104 S0")
+        self.output.append("M140 S0")
+        self.output.append("M02")
 
+    def visitCommandBlock(self, ctx):
+        self.isFunction_params = True
+        keyword = ""
+        if ctx.FUNCTIONS_KEYWORDS():
+            keyword = ctx.FUNCTIONS_KEYWORDS().getText()
+            if ctx.parameters():
+                self.visit(ctx.parameters())
+            method = getattr(self.helper, keyword)
+            method()
+
+            # Własna obsługa niektórych poleceń rysujących
+            if keyword == "FORWARD":
+                distance = self.helper.getFloatValue("FORWARD")
+                x, y = self.current_pos
+                rad = self.angle * 3.14159 / 180
+                dx = distance * math.cos(rad)
+                dy = -distance * math.sin(rad)
+                new_pos = (x + dx, y + dy)
+                if not self.is_pen_up:
+                    self.draw.line([self.current_pos, new_pos], fill="black", width=2)
+                self.current_pos = new_pos
+
+            elif keyword == "LEFT":
+                angle = self.helper.getFloatValue("LEFT")
+                self.angle = (self.angle + angle) % 360
+
+            elif keyword == "RIGHT":
+                angle = self.helper.getFloatValue("RIGHT")
+                self.angle = (self.angle - angle) % 360
+
+            elif keyword == "PENUP":
+                self.is_pen_up = True
+
+            elif keyword == "PENDOWN":
+                self.is_pen_up = False
+
+        elif ctx.IDENTIFIER():
+            keyword = ctx.IDENTIFIER().getText()
+            if keyword in self.other_functions:
+                previous_func_name = self.function_name
+                self.function_name = keyword
+                if ctx.parameters():
+                    self.isFunction_params = False
+                    self.visit(ctx.parameters())
+                    self.isFunction_params = True
+                    self.function_params.clear()
+                for line in self.other_functions[keyword]["body"]:
+                    self.visit(line)
+                self.function_name = previous_func_name
+
+        self.isFunction_params = False
+        self.function_params.clear()
 
     def visitOtherFunction(self, ctx):
         self.function_name = ctx.IDENTIFIER().getText()
@@ -272,4 +329,4 @@ class OGCompiler(OGCodeVisitor):
                 raise Exception(f"Nieznany operator logiczny: {logic_op}")
             i += 4  # Przejście do kolejnego operatora logicznego
         return result
-    
+  
