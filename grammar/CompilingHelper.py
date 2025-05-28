@@ -76,18 +76,25 @@ class Helper:
     def forward(self):
         length = self.getFloatValue("L")
         angle_rad = math.radians(self.compiler.angle)
-        new_x = round(math.cos(angle_rad)*length, 2)
-        new_y = round(math.sin(angle_rad)*length, 2)
+
         old_x = self.compiler.position[0]
         old_y = self.compiler.position[1]
-        self.compiler.position = (new_x, new_y, self.compiler.position[2])
+
+        # Obliczenie nowej pozycji względem starej
+        new_x = round(old_x + math.cos(angle_rad) * length, 2)
+        new_y = round(old_y + math.sin(angle_rad) * length, 2)
+
+        # Aktualizacja pozycji
+        
+
+        # Generowanie G-code
         if self.compiler.is_pen_up:
             self.compiler.output.append(f"G1 X{new_x} Y{new_y}")
             self.compiler.intersection_analyzer.save_line_coeffictients(old_x, old_y, new_x, new_y)
         else:
             self.compiler.output.append(f"G0 X{new_x} Y{new_y} F1000")
 
-    
+        self.compiler.position = (new_x, new_y, self.compiler.position[2])
     def setAngle(self):
         self.compiler.angle = self.getFloatValue("angle")
 

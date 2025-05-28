@@ -5,6 +5,14 @@ from OGCompiler import OGCompiler
 from MyErrorListener import MyErrorListener
 
 
+def create_parser_from_input(input_stream):
+    lexer = OGCodeLexer(input_stream)
+    token_stream = CommonTokenStream(lexer)
+    parser = OGCodeParser(token_stream)
+    parser.removeErrorListeners()
+    parser.addErrorListener(MyErrorListener())
+    return parser
+
 
 def print_tree(node, indent=0):
     node_text = node.getText() if hasattr(node, 'getText') else ""
@@ -15,11 +23,7 @@ def print_tree(node, indent=0):
 
 def compile_to_GCode(input_path, output_path):
     OG_content = FileStream(input_path, encoding="utf-8")
-    lexer = OGCodeLexer(OG_content)
-    token_stream = CommonTokenStream(lexer)
-    parser = OGCodeParser(token_stream)
-    parser.removeErrorListeners()
-    parser.addErrorListener(MyErrorListener())
+    parser = create_parser_from_input(OG_content)
     tree = parser.program()
     compiler = OGCompiler()
     g_code = compiler.compile(tree)
@@ -28,20 +32,18 @@ def compile_to_GCode(input_path, output_path):
         file.write(g_code)
 
 
-
 def main():
-    with open("OG-code.example", "r") as program_file:
+    with open("OG-code.example", "r", encoding="utf-8") as program_file:
         input_code = program_file.read()
-    input_stream = InputStream(input_code)
 
-    lexer = OGCodeLexer(input_stream)
-    token_stream = CommonTokenStream(lexer)
-    parser = OGCodeParser(token_stream)
+    input_stream = InputStream(input_code)
+    parser = create_parser_from_input(input_stream)
 
     tree = parser.program()
     print_tree(tree)
 
     compile_to_GCode("OG-code.example", "G-code.txt")
+
 
 if __name__ == '__main__':
     main()

@@ -4,6 +4,7 @@ from sympy import sympify
 from CompilingHelper import Helper
 from intersectionAnalyzer import intersectionAnalyzer
 
+
 class OGCompiler(OGCodeVisitor):
     def __init__(self):
         self.output = [] 
@@ -17,6 +18,9 @@ class OGCompiler(OGCodeVisitor):
         self.helper = Helper(self)
         self.intersection_analyzer = intersectionAnalyzer()
         self.position = (0, 0, 0) # x, y, z - surface_number
+        self.drawing = []  # Lista punktów do rysowania
+        self.current_position = (0, 0)
+        self.angle = 0  # W stopniach
 
 
     def compile(self, tree):
