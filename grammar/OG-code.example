@@ -47,7 +47,7 @@ function start() {
         forward(L=bok);
         turn(angle=90);
     }
-
+    
     penUp();
 
     if (bok > 30) {
@@ -61,12 +61,16 @@ function start() {
         turn(angle=120);
         krok++;
     }
-
+    
     filledCircle(R=30, X=0, Y=0);
     penDown();
     // getSize() function:
     let par = 50;
     getSize(i=50);
-    moveVertically(Z=10);
-    square(X=0, Y=0, L=30);
+    penUp();
+    forward(L=100);
+    drawLetter(letter='M', X=20, Y=20, L=30, W=30);
+    filledCircle(R=20, X=0, Y=0);
+    nextSurface();
+    circle(R=10, X=0, Y=0);
 }

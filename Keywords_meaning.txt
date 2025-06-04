@@ -15,7 +15,7 @@ filledCircle(R=30, X=0, Y=0) - rysuje wypełnione koło
 drawLetter(letter="M", L=100, W=50, X0=0, Y0=0) - rysuje literke M, X0, Y0 - pozycja środkowa, L - długość prostokąta, w którym literka będzie się mieścić, W - szerokość prostokąta 
 setAxis(angle='X')
 moveVertically(Z=20); G0 Z20 F600, lub G1 Z10 F300
-square(X=0, Y=0, L=20) 
+square(X=0, Y=0, L=20) X, Y - środek kwadratu
 nextSurface() - umożliwia rysowanie w 3 wymiarze
 
 M220 S100 ;Reset Feedrate 
@@ -43,4 +43,3 @@ M107 – wyłączenie wentylatora chłodzącego (drukarek 3D)
 G28 – homowanie osi (najczęściej na koniec, aby głowica wróciła do pozycji referencyjnej) 
 G90 – powrót do pozycjonowania absolutnego (opcjonalnie) 
 M84 – wyłączenie silników krokowych (odłączenie prądu)
-xd

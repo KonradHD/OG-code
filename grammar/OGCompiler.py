@@ -13,7 +13,7 @@ class OGCompiler(OGCodeVisitor):
         self.variables_values = {} # function_name : {var : value }
         self.isFunction_params = False
         self.function_params = {}
-        self.is_pen_up = False
+        self.pen_up = False
         self.angle = 0
         self.helper = Helper(self)
         self.intersection_analyzer = intersectionAnalyzer()
@@ -41,17 +41,23 @@ class OGCompiler(OGCodeVisitor):
     def visitStartFunction(self, ctx):
         self.function_name = "start"
         self.variables_values[self.function_name] = {}
+        self.output.append("M201 X2500 Y2500 Z500 E5000")
+        self.output.append("M203 X250 Y250 Z5 E40")
+        self.output.append("M204 P2500 R500 T2500 ; sets acceleration (P, T) and retract acceleration (R)")
+        self.output.append("M205 X10.00 Y10.00 Z0.40 E5.00 ; sets the jerk limits, mm/sec")
         self.output.append("M220 S100 ;Reset Feedrate")
         self.output.append("M221 S100 ;Reset Flowrate")
-        self.output.append("M104 S200 ;Set final nozzle temp")
-        self.output.append("M190 S50 ;Set and wait for bed temp to stabilize ")
+        self.output.append("M104 S220 ;Set final nozzle temp")
+        self.output.append("M190 S55 ;Set and wait for bed temp to stabilize ")
         self.output.append("G28")# można coś dodać jeszcze 
+        self.output.append("G92 E0 ;Reset Extruder")
+        self.output.append("G0 X0.0 Y0.0 ;move to (0,0)")
         for value in ctx.body():
             self.visit(value)
         self.output.append("M106 S0 ;Turn-off fan ")
-        self.output.append("M104 S0") # wyłączenie grzałki ekstrudera
-        self.output.append("M140 S0") # wyłączenie grzałki stołu grzewczego
-        self.output.append("M02") # zakończenie programu i reset parametrów
+        self.output.append("M104 S0 ;Turn-off hotend") # wyłączenie grzałki ekstrudera
+        self.output.append("M140 S0 ;Turn-off bed") # wyłączenie grzałki stołu grzewczego
+        self.output.append("M84 X Y E ;Disable all steppers but Z") # zakończenie programu i reset parametrów
 
 
     def visitOtherFunction(self, ctx):
