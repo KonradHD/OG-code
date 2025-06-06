@@ -33,7 +33,7 @@ def compile_to_GCode(input_path, output_path):
 
 
 def main():
-    with open("OG-code.example", "r", encoding="utf-8") as program_file:
+    with open("circles_example.txt", "r", encoding="utf-8") as program_file:
         input_code = program_file.read()
 
     input_stream = InputStream(input_code)
@@ -42,7 +42,7 @@ def main():
     tree = parser.program()
     print_tree(tree)
 
-    compile_to_GCode("OG-code.example", "G-code.txt")
+    compile_to_GCode("circles_example.txt", "G-code.gcode")
 
 
 if __name__ == '__main__':

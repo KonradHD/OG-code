@@ -14,12 +14,9 @@ class OGCompiler(OGCodeVisitor):
         self.isFunction_params = False
         self.function_params = {}
         self.pen_up = False
-        self.angle = 0
         self.helper = Helper(self)
         self.intersection_analyzer = intersectionAnalyzer()
-        self.position = (0, 0, 0) # x, y, z - surface_number
-        self.drawing = []  # Lista punktów do rysowania
-        self.current_position = (0, 0)
+        self.position = (110, 110, 0.2) # x, y, z - surface_number
         self.angle = 0  # W stopniach
 
 
@@ -48,16 +45,26 @@ class OGCompiler(OGCodeVisitor):
         self.output.append("M220 S100 ;Reset Feedrate")
         self.output.append("M221 S100 ;Reset Flowrate")
         self.output.append("M104 S220 ;Set final nozzle temp")
+        self.output.append("M140 S55")
         self.output.append("M190 S55 ;Set and wait for bed temp to stabilize ")
+        self.output.append("M109 S220")
         self.output.append("G28")# można coś dodać jeszcze 
         self.output.append("G92 E0 ;Reset Extruder")
-        self.output.append("G0 X0.0 Y0.0 ;move to (0,0)")
+        self.output.append("G1 F1000 ")
+        self.output.append(f"; warstwa {(int)((self.position[2]/2)*10)}")
+        self.output.append("G0 Z0.2 F600; move up")
+        self.output.append("G0 X110 Y110 F3000;move to center")
+        self.output.append("M83") # tryb przyrostowy ekstrudera
         for value in ctx.body():
             self.visit(value)
-        self.output.append("M106 S0 ;Turn-off fan ")
+        self.output.append("; --- KONIEC ---")
+        self.output.append("G1 E120.2 F1800 ; retract")
+        self.output.append("G1 Z5 F600")
+        self.output.append("G0 X0 Y0 F3000")
         self.output.append("M104 S0 ;Turn-off hotend") # wyłączenie grzałki ekstrudera
         self.output.append("M140 S0 ;Turn-off bed") # wyłączenie grzałki stołu grzewczego
-        self.output.append("M84 X Y E ;Disable all steppers but Z") # zakończenie programu i reset parametrów
+        self.output.append("M106 S0 ;Turn-off fan ")
+        self.output.append("M84 ;Disable all steppers") # zakończenie programu i reset parametrów
 
 
     def visitOtherFunction(self, ctx):

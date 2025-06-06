@@ -1,0 +1,8 @@
+function start(){
+    penUp();
+    filledCircle(R=10, X=110, Y=100);
+    penDown();
+    forward(L=40);
+    penUp();
+    square(L=20, X=130, Y=130);
+}

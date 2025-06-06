@@ -1,12 +1,10 @@
 function drawStar(let size) {
-    penDown();
-    let i = 0;
+    penUp();
     repeat 5 {
         forward(L=size);
         turn(angle=144);  // kluczowy kąt dla pięcioramiennej gwiazdy
-        i = i + 1;
     }
-    penUp();
+    penDown();
 }
 
 function start() {
@@ -14,8 +12,8 @@ function start() {
     autoLevel(save=true);
     setAngle(angle=0);
 
-    move(X=0, Y=0);
-    drawStar(size=100);
-
-    nextSurface();
+    repeat 10 {
+        drawStar(size=100);
+        nextSurface();
+    }
 }
