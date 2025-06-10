@@ -40,8 +40,8 @@ class intersectionAnalyzer():
         A2, B2, C2 = coef2
 
         # Sprawdzenie czy linie są tożsame (wszystkie współczynniki proporcjonalne)
-        if A1 * B2 == A2 * B1 and A1 * C2 == A2 * C1 and B1 * C2 == B2 * C1:
-            raise Exception("Lines cannot overlap each other in the same surface.")
+        #if A1 * B2 == A2 * B1 and A1 * C2 == A2 * C1 and B1 * C2 == B2 * C1:
+        #    raise Exception("Lines cannot overlap each other in the same surface.")
         A = np.array([
             [A1, B1],
             [A2, B2]

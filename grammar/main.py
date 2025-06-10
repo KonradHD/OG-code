@@ -26,7 +26,7 @@ def compile_to_GCode(input_path, output_path):
     parser = create_parser_from_input(OG_content)
     tree = parser.program()
     compiler = OGCompiler()
-    g_code = compiler.compile(tree)
+    g_code, drawing_data = compiler.compile(tree)
 
     with open(output_path, "w", encoding="utf-8") as file:
         file.write(g_code)

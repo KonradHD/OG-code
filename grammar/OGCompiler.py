@@ -18,12 +18,16 @@ class OGCompiler(OGCodeVisitor):
         self.intersection_analyzer = intersectionAnalyzer()
         self.position = (110, 110, 0.2) # x, y, z - surface_number
         self.angle = 0  # W stopniach
+        self.drawing = []
 
 
     def compile(self, tree):
         self.visit(tree)
-        return "\n".join(self.output)
-
+        gcode_str = '\n'.join(self.output)
+        print("compile zwraca gcode i rysunek")
+        print(f"gcode:\n{gcode_str[:100]}...")  # pokaż pierwsze 100 znaków
+        print(f"drawing: {self.drawing[:5]}")   # pokaż kilka elementów rysunku
+        return gcode_str, self.drawing
     
     def visitProgram(self, ctx):
         self.visit(ctx.funcDefinition())

@@ -85,6 +85,8 @@ class Helper:
         if self.compiler.pen_up:
             self.compiler.output.append(f"G1 X{new_x} Y{new_y} E{round(math.sqrt((old_x-new_x)**2 + (old_y-new_y)**2),2)}")
             self.compiler.intersection_analyzer.save_line_coeffictients(old_x, old_y, new_x, new_y)
+            self.compiler.drawing.append(((old_x, old_y), (new_x, new_y)))
+
         else:
             self.compiler.output.append(f"G0 X{new_x} Y{new_y} F3000")
         self.compiler.position = (new_x, new_y, self.compiler.position[2])
