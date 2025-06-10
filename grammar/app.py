@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_ace import st_ace
 from antlr4 import *
 from OGCodeLexer import OGCodeLexer
 from OGCodeParser import OGCodeParser
@@ -36,8 +37,20 @@ tabs = st.tabs(["OG-Code", "G-Code", "Podgląd"])
 ogcode = ""
 with tabs[0]:
     st.header("OG-Code Editor")
-    ogcode = st.text_area("Wklej swój kod OG-Code tutaj:", height=400)
-
+    ogcode = st_ace(
+        language='python',  # nie ma 'ogcode' więc wybierz najbardziej zbliżony język, np. python lub plain_text
+        theme='monokai',
+        keybinding='vscode',
+        font_size=14,
+        tab_size=4,
+        show_gutter=True,
+        show_print_margin=False,
+        wrap=True,
+        auto_update=True,
+        placeholder="Wklej lub wpisz kod OG-Code tutaj...",
+        height=400,
+        key="ogcode_ace"
+    )
 gcode, drawing = None, None
 if ogcode:
     try:
