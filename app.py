@@ -1,10 +1,10 @@
 import streamlit as st
 from streamlit_ace import st_ace
 from antlr4 import *
-from OGCodeLexer import OGCodeLexer
-from OGCodeParser import OGCodeParser
-from OGCompiler import OGCompiler
-from MyErrorListener import MyErrorListener
+from grammar.OGCodeLexer import OGCodeLexer
+from grammar.OGCodeParser import OGCodeParser
+from Compiler.OGCompiler import OGCompiler
+from Compiler.MyErrorListener import MyErrorListener
 import matplotlib.pyplot as plt
 import io
 

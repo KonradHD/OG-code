@@ -1,8 +1,8 @@
-from OGCodeParser import OGCodeParser
-from OGCodeVisitor import OGCodeVisitor
+from grammar.OGCodeParser import OGCodeParser
+from grammar.OGCodeVisitor import OGCodeVisitor
 from sympy import sympify
-from CompilingHelper import Helper
-from intersectionAnalyzer import intersectionAnalyzer
+from Compiler.CompilingHelper import Helper
+from Compiler.intersectionAnalyzer import intersectionAnalyzer
 
 
 class OGCompiler(OGCodeVisitor):
