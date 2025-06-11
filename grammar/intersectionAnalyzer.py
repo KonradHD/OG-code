@@ -168,6 +168,6 @@ class intersectionAnalyzer():
                     self.add_point(point)
             points = []
 
-        for value in self.intersection_counter.values():
-            if value >= self.intersections_limit:
-                raise Exception("Too many intersections.")
+        #for value in self.intersection_counter.values():
+        #    if value >= self.intersections_limit:
+        #        raise Exception("Too many intersections.")
