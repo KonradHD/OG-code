@@ -62,7 +62,7 @@ class OGCompiler(OGCodeVisitor):
         for value in ctx.body():
             self.visit(value)
         self.output.append("; --- KONIEC ---")
-        self.output.append("G1 E120.2 F1800 ; retract")
+        self.output.append("G1 E2 F1800 ; retract")
         self.output.append("G1 Z5 F600")
         self.output.append("G0 X0 Y0 F3000")
         self.output.append("M104 S0 ;Turn-off hotend") # wyłączenie grzałki ekstrudera
