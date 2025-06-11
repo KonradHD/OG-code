@@ -83,7 +83,7 @@ class Helper:
         new_x = round(old_x + math.cos(angle_rad) * length, 2)
         new_y = round(old_y + math.sin(angle_rad) * length, 2)
         if self.compiler.pen_up:
-            self.compiler.output.append(f"G1 X{new_x} Y{new_y} E{round(math.sqrt((old_x-new_x)**2 + (old_y-new_y)**2),2)}")
+            self.compiler.output.append(f"G1 X{new_x} Y{new_y} E{round(math.sqrt((old_x-new_x)**2 + (old_y-new_y)**2)/23, 4)}")
             self.compiler.intersection_analyzer.save_line_coeffictients(old_x, old_y, new_x, new_y)
             self.compiler.drawing.append(((old_x, old_y), (new_x, new_y)))
 
@@ -129,7 +129,7 @@ class Helper:
         old_y = self.compiler.position[1]
         self.compiler.position = (new_x, new_y, self.compiler.position[2])
         if self.compiler.pen_up:
-            self.compiler.output.append(f"G1 X{new_x} Y{new_y} E{round(math.sqrt((old_x-new_x)**2 + (old_y-new_y)**2),2)}")
+            self.compiler.output.append(f"G1 X{new_x} Y{new_y} E{round(math.sqrt((old_x-new_x)**2 + (old_y-new_y)**2)/23, 4)}")
             self.compiler.intersection_analyzer.save_line_coeffictients(old_x, old_y, new_x, new_y)
         else:
             self.compiler.output.append(f"G0 X{new_x} Y{new_y} F3000")
@@ -165,7 +165,7 @@ class Helper:
 
     def makeCircle(self, R, x0, y0):
         self.compiler.output.append(f"G0 X{round(x0-R, 2)} Y{round(y0-R, 2)} F3000")
-        self.compiler.output.append(f"G2 X{round(x0 - R)} Y{round(y0 - R)} I{round(R, 2)} J{round(R, 2)} E{2*math.pi*R}")
+        self.compiler.output.append(f"G2 X{round(x0 - R)} Y{round(y0 - R)} I{round(R, 2)} J{round(R, 2)} E{round((2*math.pi*R)/23, 4)}")
         self.compiler.intersection_analyzer.save_circle_coefficients(x0, y0, round(R, 2))
     
 
@@ -211,13 +211,13 @@ class Helper:
 
                 self.compiler.output.append(f"G0 X{x_left} Y{y_bottom} F3000")    # do lewego dołu (bez rysowania)
                 self.compiler.intersection_analyzer.save_line_coeffictients(old_x0, old_y0, x_left, y_bottom)
-                self.compiler.output.append(f"G1 X{x_left} Y{y_top} E{abs(y_top-y_bottom)}")       # pion w górę
+                self.compiler.output.append(f"G1 X{x_left} Y{y_top} E{round(abs(y_top-y_bottom)/23, 4)}")       # pion w górę
                 self.compiler.intersection_analyzer.save_line_coeffictients(x_left, y_bottom, x_left, y_top)
-                self.compiler.output.append(f"G1 X{x0} Y{y_bottom} E{round(math.sqrt((x_left-x0)**2 + (y_top-y_bottom)**2),2)}")        # ukośna do środka
+                self.compiler.output.append(f"G1 X{x0} Y{y_bottom} E{round(math.sqrt((x_left-x0)**2 + (y_top-y_bottom)**2)/23, 4)}")        # ukośna do środka
                 self.compiler.intersection_analyzer.save_line_coeffictients(x_left, y_top, x0, y_bottom)
-                self.compiler.output.append(f"G1 X{x_right} Y{y_top} E{round(math.sqrt((x0-x_right)**2) + (y_top-y_bottom)**2,2)}")      # ukośna do prawej góry
+                self.compiler.output.append(f"G1 X{x_right} Y{y_top} E{round(math.sqrt((x0-x_right)**2 + (y_top-y_bottom)**2)/23, 4)}")      # ukośna do prawej góry
                 self.compiler.intersection_analyzer.save_line_coeffictients(x0, y_bottom, x_right, y_top)
-                self.compiler.output.append(f"G1 X{x_right} Y{y_bottom} E{abs(y_top-y_bottom)}")   # pion w dół
+                self.compiler.output.append(f"G1 X{x_right} Y{y_bottom} E{round(abs(y_top-y_bottom)/23, 4)}")   # pion w dół
                 self.compiler.intersection_analyzer.save_line_coeffictients(x_right, y_top, x_right, y_bottom)
 
         self.compiler.output.append(f"G0 X{old_x0}, Y{old_y0} F3000")
@@ -258,13 +258,13 @@ class Helper:
             #self.compiler.output.append("G91") # tryb przyrostowy (łatwiejsze przemieszczanie) gdy jest włączony to G1 X10 Y0 oznacza przesuń się 10mm w osi X
             #self.compiler.output.append("M83") # ekstruder w trybie przyrostowym (dla druku 3D)
             
-            self.compiler.output.append(f"G1 X{x0 + L} Y{y0} E{L}")
+            self.compiler.output.append(f"G1 X{x0 + L} Y{y0} E{round(L/23, 4)}")
             self.compiler.intersection_analyzer.save_line_coeffictients(x0, y0, x0+L, y0)
-            self.compiler.output.append(f"G1 X{x0 + L} Y{y0 + L} E{L} ")
+            self.compiler.output.append(f"G1 X{x0 + L} Y{y0 + L} E{round(L/23, 4)} ")
             self.compiler.intersection_analyzer.save_line_coeffictients(x0+L, y0, x0+L, y0+L)
-            self.compiler.output.append(f"G1 X{x0} Y{y0 + L} E{L}")
+            self.compiler.output.append(f"G1 X{x0} Y{y0 + L} E{round(L/23, 4)}")
             self.compiler.intersection_analyzer.save_line_coeffictients(x0 +L, y0+L, x0, y0+L)
-            self.compiler.output.append(f"G1 X{x0} Y{y0} E{L}") # jeżeli nie podano pozycji środka, to kończy w pozycji startowej
+            self.compiler.output.append(f"G1 X{x0} Y{y0} E{round(L/23, 4)}") # jeżeli nie podano pozycji środka, to kończy w pozycji startowej
             self.compiler.intersection_analyzer.save_line_coeffictients(x0, y0+L, x0, y0)
         
         #self.compiler.output.append("G90") # tryb absolutny
@@ -293,7 +293,7 @@ class Helper:
             # self.compiler.output.append("M3") # start wrzeciona lub ekstrudera
             # self.compiler.output.append("M83") # ekstruder w trybie przyrostowym (dla druku 3D)
             
-            self.compiler.output.append(f"G2 X{x0 - R} Y{y0 - R} I{R} J{R} E{round(2*math.pi*R, 2)}")
+            self.compiler.output.append(f"G2 X{x0 - R} Y{y0 - R} I{R} J{R} E{round((2*math.pi*R)/23, 4)}")
             self.compiler.intersection_analyzer.save_circle_coefficients(x0, y0, R)
             
             # self.compiler.output.append("M5") # stop wrzeciona
